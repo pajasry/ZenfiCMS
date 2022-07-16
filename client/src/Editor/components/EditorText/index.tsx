@@ -1,7 +1,7 @@
 /**
  * Text for editor component
  */
-const EditorText = ({ text, fontSize }: Props) => {
+export const EditorText = ({ text, fontSize }: EditorTextProps) => {
     return (
         <div>
             <p style={{ fontSize }}>{text}</p>
@@ -9,9 +9,7 @@ const EditorText = ({ text, fontSize }: Props) => {
     );
 };
 
-interface Props {
+interface EditorTextProps {
     text: string;
     fontSize: number;
 }
-
-export default EditorText;

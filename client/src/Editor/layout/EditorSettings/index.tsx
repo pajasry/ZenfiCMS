@@ -1,8 +1,6 @@
 /**
  * Settings for editor component
  */
-const EditorSettings = () => {
+export const EditorSettings = () => {
     return <div></div>;
 };
-
-export default EditorSettings;

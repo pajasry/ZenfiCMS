@@ -1,6 +1,7 @@
 import Editor from "@/Editor";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "@/theme";
+import { GlobalAppStyle, StyledApp } from "./styled";
 
 /**
  * App component
@@ -8,9 +9,10 @@ import { defaultTheme } from "@/theme";
 const App = () => {
     return (
         <ThemeProvider theme={defaultTheme}>
-            <div>
+            <StyledApp>
+                <GlobalAppStyle />
                 <Editor />
-            </div>
+            </StyledApp>
         </ThemeProvider>
     );
 };
