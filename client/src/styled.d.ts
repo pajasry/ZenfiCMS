@@ -4,7 +4,11 @@ declare module "styled-components" {
     export interface DefaultTheme {
         color: {
             primary: string;
-            black: string;
+            secondary: string;
+            info: string;
+            success: string;
+            warning: string;
+            danger: string;
             white: string;
         };
         fontFamily: {

@@ -1,5 +1,3 @@
-import EditorSettings from "./EditorSettings";
-import EditorTopBar from "./EditorTopBar";
-import EditorToolbox from "./EditorToolbox";
-
-export { EditorToolbox, EditorTopBar, EditorSettings };
+export * from "./EditorSettings";
+export * from "./EditorToolbox";
+export * from "./EditorTopBar";
