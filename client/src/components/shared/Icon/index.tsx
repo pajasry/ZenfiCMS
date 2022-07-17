@@ -1,13 +1,13 @@
-import { StyledIcon } from "./styled";
+import * as Styled from "./styled";
 
 /**
  * Icon component
  */
 export const Icon = ({ name }: IconProps) => {
     return (
-        <StyledIcon>
+        <Styled.Wrapper>
             <use xlinkHref={`/assets/images/sprite.svg#${name}`} />
-        </StyledIcon>
+        </Styled.Wrapper>
     );
 };
 

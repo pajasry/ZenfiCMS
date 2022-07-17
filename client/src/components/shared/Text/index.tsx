@@ -1,5 +1,5 @@
 import { createElement } from "react";
-import { StyledText } from "@/components/shared/Text/styled";
+import * as Styled from "./styled";
 
 /**
  * Text component
@@ -8,9 +8,9 @@ export const Text = ({ value, as = "p", size = "body", weight = "regular" }: Tex
     return createElement(
         as,
         {},
-        <StyledText size={size} weight={weight}>
+        <Styled.Wrapper size={size} weight={weight}>
             {value}
-        </StyledText>
+        </Styled.Wrapper>
     );
 };
 

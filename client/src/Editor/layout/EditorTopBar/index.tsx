@@ -1,27 +1,22 @@
 import { Button } from "@/components/shared";
-import {
-    StyledEditorTopBar,
-    StyledEditorTopBarHistoryActions,
-    StyledEditorTopBarSaveActions,
-    StyledEditorTopBarDevicesActions,
-} from "./styled";
+import * as Styled from "./styled";
 
 /**
  * Top bar for editor component
  */
 export const EditorTopBar = () => {
     return (
-        <StyledEditorTopBar>
-            <StyledEditorTopBarHistoryActions>
-                <Button icon="redo" variant="secondary" />
-                <Button icon="undo" variant="secondary" />
-            </StyledEditorTopBarHistoryActions>
+        <Styled.Wrapper>
+            <Styled.HistoryActions>
+                <Button icon="redo" variant="secondary" title="Krok zpět" />
+                <Button icon="undo" variant="secondary" title="Krok vpřed" />
+            </Styled.HistoryActions>
 
-            <StyledEditorTopBarDevicesActions>Devices</StyledEditorTopBarDevicesActions>
+            <Styled.DevicesActions>Devices</Styled.DevicesActions>
 
-            <StyledEditorTopBarSaveActions>
-                <Button icon="download" value="Uložit" />
-            </StyledEditorTopBarSaveActions>
-        </StyledEditorTopBar>
+            <Styled.SaveActions>
+                <Button icon="download" value="Uložit" title="Uložit změny" />
+            </Styled.SaveActions>
+        </Styled.Wrapper>
     );
 };

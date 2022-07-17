@@ -2,14 +2,14 @@ import { ButtonProps } from "./";
 import styled, { css } from "styled-components";
 import { WithDefaultTheme } from "@/types";
 
-import { StyledIcon } from "@/components/shared/Icon/styled";
-import { StyledText } from "@/components/shared/Text/styled";
+import * as StyledIcon from "@/components/shared/Icon/styled";
+import * as StyledText from "@/components/shared/Text/styled";
 
 /**
  * Styles for Button component
  */
 
-export const StyledButton = styled.button<StyledButtonProps>`
+export const Wrapper = styled.button<StyledButtonProps>`
     border-width: 2px;
     border-style: solid;
     border-color: transparent;
@@ -29,7 +29,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
         transform: scale(0.95);
     }
 
-    & ${StyledIcon} {
+    & ${StyledIcon.Wrapper} {
         max-width: 24px;
         max-height: 24px;
         margin-left: -6px;
@@ -39,6 +39,10 @@ export const StyledButton = styled.button<StyledButtonProps>`
     }
 
     ${(props) => parseStyleVariant(props)}
+`;
+
+export const Value = styled(StyledText.Wrapper)`
+    font-weight: 600;
 `;
 
 const parseStyleVariant = ({ variant, theme }: StyledButtonProps & WithDefaultTheme) => {
@@ -73,9 +77,5 @@ const parseIconStyleVariant = ({ variant, theme }: StyledButtonProps & WithDefau
         }
     }
 };
-
-export const StyledButtonValue = styled(StyledText)`
-    font-weight: 600;
-`;
 
 type StyledButtonProps = Pick<ButtonProps, "variant" | "value">;

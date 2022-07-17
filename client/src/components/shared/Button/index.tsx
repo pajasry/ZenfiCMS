@@ -1,24 +1,25 @@
 import { Icon, IconName } from "@/components/shared";
-import { StyledButton, StyledButtonValue } from "./styled";
+import * as Styled from "./styled";
 
 /**
  * Button component
  */
-export const Button = ({ value, icon, variant = "primary" }: ButtonProps) => {
+export const Button = ({ value, icon, title, variant = "primary" }: ButtonProps) => {
     return (
-        <StyledButton variant={variant} value={value}>
+        <Styled.Wrapper variant={variant} value={value} title={title}>
             {icon && <Icon name={icon} />}
             {value && (
-                <StyledButtonValue size="body" weight="semi">
+                <Styled.Value size="body" weight="semi">
                     {value}
-                </StyledButtonValue>
+                </Styled.Value>
             )}
-        </StyledButton>
+        </Styled.Wrapper>
     );
 };
 
 export interface ButtonProps {
     value?: string;
+    title: string;
     variant?: "primary" | "secondary";
     icon?: IconName;
 }

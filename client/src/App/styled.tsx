@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-export const GlobalAppStyle = createGlobalStyle`
+export const Global = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -8,4 +8,4 @@ export const GlobalAppStyle = createGlobalStyle`
   }
 `;
 
-export const StyledApp = styled.div``;
+export const Wrapper = styled.div``;

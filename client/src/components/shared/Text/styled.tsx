@@ -5,7 +5,7 @@ import { TextProps } from "@/components/shared";
  * Styles for text component
  */
 
-export const StyledText = styled.p<StyledTextProps>`
+export const Wrapper = styled.p<StyledTextProps>`
     font-weight: ${({ weight }) => weight};
     font-family: ${({ theme }) => theme.fontFamily.manrope};
 

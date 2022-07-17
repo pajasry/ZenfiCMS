@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-import { StyledButton } from "@/components/shared/Button/styled";
+import * as StyledButton from "@/components/shared/Button/styled";
 
 /**
  * Styles for EditorTopBar component
  */
 
-export const StyledEditorTopBar = styled.div`
+export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,19 +15,19 @@ export const StyledEditorTopBar = styled.div`
     padding: 12px 24px;
 `;
 
-export const StyledEditorTopBarHistoryActions = styled.div`
+export const HistoryActions = styled.div`
     display: flex;
     align-items: center;
 
-    & ${StyledButton} {
+    & ${StyledButton.Wrapper} {
         padding: 9px 13px;
     }
 
-    & ${StyledButton}:not(:last-child) {
+    & ${StyledButton.Wrapper}:not(:last-child) {
         margin-right: 12px;
     }
 `;
 
-export const StyledEditorTopBarDevicesActions = styled.div``;
+export const DevicesActions = styled.div``;
 
-export const StyledEditorTopBarSaveActions = styled.div``;
+export const SaveActions = styled.div``;
