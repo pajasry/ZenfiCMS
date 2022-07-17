@@ -1,17 +1,12 @@
 import styled from "styled-components";
 
-import * as StyledButton from "@/components/shared/Button/styled";
-
-/**
- * Styles for EditorTopBar component
- */
+import * as StyledButton from "@/components/core/Button/styled";
 
 export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: ${({ theme }) => theme.color.white};
-    border-bottom: 2px solid ${({ theme }) => theme.color.grey._3};
+    background: #fff;
     padding: 12px 24px;
 `;
 

@@ -2,14 +2,13 @@ import { DefaultTheme } from "styled-components";
 
 export const defaultTheme: DefaultTheme = {
     color: {
-        primary: "#1A1B41",
-        black: "#000",
-        white: "#fff",
-        grey: {
-            _1: "#FAFAFA",
-            _2: "#F4F4F4",
-            _3: "#E6E6E6",
-        },
+        primary: "#eb6c1a",
+        secondary: "#999999",
+        info: "#1e2030",
+        success: "#7c9b40",
+        warning: "#f98b08",
+        danger: "#f44336",
+        white: "#F2F4F0",
     },
     fontFamily: {
         manrope: "'Manrope', sans-serif",

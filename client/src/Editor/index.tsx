@@ -4,7 +4,7 @@ import { EditorSettings, EditorToolbox, EditorTopBar } from "@/Editor/layout";
  * Editor component
  */
 
-const Editor = () => {
+export const Editor = () => {
     return (
         <div className="editor">
             <EditorTopBar />
@@ -13,5 +13,3 @@ const Editor = () => {
         </div>
     );
 };
-
-export default Editor;

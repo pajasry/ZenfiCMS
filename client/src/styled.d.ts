@@ -4,13 +4,12 @@ declare module "styled-components" {
     export interface DefaultTheme {
         color: {
             primary: string;
-            black: string;
+            secondary: string;
+            info: string;
+            success: string;
+            warning: string;
+            danger: string;
             white: string;
-            grey: {
-                _1: string;
-                _2: string;
-                _3: string;
-            };
         };
         fontFamily: {
             manrope: string;
