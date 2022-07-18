@@ -6,7 +6,7 @@ import { Editor } from "@/Editor";
  */
 export const HomeView = () => {
     return (
-        <Template title="Přehled">
+        <Template title="Přehled" fluid forceHideNavigation>
             <Editor />
         </Template>
     );
