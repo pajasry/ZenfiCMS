@@ -8,9 +8,8 @@ export const Wrapper = styled.aside`
 `;
 
 export const Logo = styled.div`
-    padding: 15px;
+    padding: 15px 0 15px 20px;
     margin-bottom: 10px;
-    text-align: center;
 `;
 
 export const Menu = styled.ul``;
