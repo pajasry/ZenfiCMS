@@ -15,7 +15,7 @@ export const EditorTopBar = () => {
             <Styled.DevicesActions>Devices</Styled.DevicesActions>
 
             <Styled.SaveActions>
-                <Button icon="download" variant="success" value="Uložit" title="Uložit změny" />
+                <Button icon="download" value="Uložit" title="Uložit změny" />
             </Styled.SaveActions>
         </Styled.Wrapper>
     );

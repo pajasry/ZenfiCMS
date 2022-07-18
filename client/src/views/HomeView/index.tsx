@@ -2,11 +2,11 @@ import { Template } from "@/components/layout";
 import { Editor } from "@/Editor";
 
 /**
- * Home page
+ * Home view
  */
-export const HomePage = () => {
+export const HomeView = () => {
     return (
-        <Template>
+        <Template title="Přehled">
             <Editor />
         </Template>
     );

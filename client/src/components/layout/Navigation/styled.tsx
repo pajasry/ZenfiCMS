@@ -10,6 +10,7 @@ export const Wrapper = styled.nav`
 export const Logo = styled.div`
     padding: 15px;
     margin-bottom: 10px;
+    text-align: center;
 `;
 
 export const Menu = styled.ul``;
