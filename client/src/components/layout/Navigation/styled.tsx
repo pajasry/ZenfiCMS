@@ -3,42 +3,31 @@ import styled from "styled-components";
 import * as StyledIcon from "@/components/core/Icon/styled";
 
 export const Wrapper = styled.nav`
-    background: #fff;
-    padding: 15px 12px;
-`;
-
-export const Logo = styled.div`
-    padding: 15px;
-    margin-bottom: 10px;
-    text-align: center;
-`;
-
-export const Menu = styled.ul``;
-
-export const MenuItem = styled.li<MenuItemProps>`
     display: flex;
     align-items: center;
-    padding: 15px;
-    cursor: pointer;
-    border-radius: 4px;
-    background: ${({ theme, isActive }) => (isActive ? theme.color.white : "transparent")};
+`;
 
-    &:not(:last-child) {
-        margin-bottom: 4px;
-    }
-
-    &:hover {
-        background: ${({ theme }) => theme.color.white};
-    }
+export const User = styled.div`
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 
     & ${StyledIcon.Wrapper} {
-        width: 18px;
-        height: 18px;
-        margin-right: 18px;
-        opacity: ${({ isActive }) => (isActive ? 1 : 0.5)};
+        width: 10px;
+        height: 10px;
+        margin-left: 9px;
     }
 `;
 
-interface MenuItemProps {
-    isActive: boolean;
-}
+export const UserImage = styled.div`
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+
+    & img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+`;
