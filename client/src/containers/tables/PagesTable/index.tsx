@@ -8,8 +8,8 @@ import { useMemo } from "react";
 export const PagesTable = () => {
     const actions = useMemo<RowAction<typeof dataItem>[]>(
         () => [
-            { title: "Upravit", onClick: () => null },
-            { title: "Odstranit", onClick: () => null },
+            { title: "Upravit", onClick: () => alert("edit") },
+            { title: "Odstranit", variant: "danger", onClick: () => alert("remove") },
         ],
         []
     );
@@ -40,7 +40,7 @@ export const PagesTable = () => {
         []
     );
 
-    return <Table columns={columns} data={[dataItem]} actions={actions} />;
+    return <Table columns={columns} data={[dataItem, dataItem]} actions={actions} />;
 };
 
 // Placeholder data

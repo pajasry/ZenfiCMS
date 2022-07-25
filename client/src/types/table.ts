@@ -1,3 +1,5 @@
+import { Variant } from "@/types";
+
 export type Column<T extends object> = {
     name: string;
     field: keyof T;
@@ -8,5 +10,6 @@ export type Column<T extends object> = {
 
 export type RowAction<T extends object> = {
     title: string;
+    variant?: Variant;
     onClick: (row: T) => void;
 };
