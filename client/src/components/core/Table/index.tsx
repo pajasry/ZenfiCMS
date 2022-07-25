@@ -8,10 +8,10 @@ import { useState } from "react";
  * Table component
  */
 export const Table = ({ columns, data, actions }: TableProps) => {
-    const [actionsPopupVisible, setActionsPopupVisible] = useState(false);
+    const [actionsPopups, setActionsPopups] = useState<boolean[]>([]);
 
-    const toggleActionsPopupVisibility = () => {
-        setActionsPopupVisible((p) => !p);
+    const updateActionPopup = (index: number, value: boolean) => {
+        setActionsPopups(_.set([...actionsPopups], index, value));
     };
 
     const renderColumnValue = (column: Column<any>, item: any) => {
@@ -29,12 +29,12 @@ export const Table = ({ columns, data, actions }: TableProps) => {
             <Styled.RowHead>
                 {_.map(columns, (column) => (
                     <Styled.Column key={column.name} grow={column.grow || 1}>
-                        <Text value={column.name} weight={600} />
+                        <Text value={column.name} weight={700} />
                     </Styled.Column>
                 ))}
             </Styled.RowHead>
             {_.map(data, (item, i) => (
-                <Styled.Row key={i}>
+                <Styled.Row key={i} active={actionsPopups[i]}>
                     {_.map(columns, (column) => (
                         <Styled.Column key={column.name} grow={column.grow || 1}>
                             {renderColumnValue(column, item)}
@@ -42,13 +42,17 @@ export const Table = ({ columns, data, actions }: TableProps) => {
                     ))}
                     <Styled.RowActions
                         tabIndex={0}
-                        onBlur={() => setActionsPopupVisible(false)}
-                        onClick={toggleActionsPopupVisibility}
+                        onBlur={() => updateActionPopup(i, false)}
+                        onClick={() => updateActionPopup(i, !actionsPopups[i])}
                     >
                         <Icon name="more-dots" />
-                        <Styled.RowActionsPopup visible={actionsPopupVisible}>
+                        <Styled.RowActionsPopup visible={actionsPopups[i]}>
                             {_.map(actions, (action, i) => (
-                                <Styled.RowAction key={i} onClick={() => action.onClick(item)}>
+                                <Styled.RowAction
+                                    key={i}
+                                    variant={action.variant}
+                                    onClick={() => action.onClick(item)}
+                                >
                                     {action.title}
                                 </Styled.RowAction>
                             ))}
