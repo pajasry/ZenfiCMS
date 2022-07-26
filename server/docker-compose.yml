@@ -1,0 +1,15 @@
+version: "2"
+services:
+    database:
+        container_name: zenficms-db
+        image: postgres:13.1-alpine
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: zenficms-db
+            PGDATA: /var/lib/postgres/data/pgdata
+        volumes:
+            - ./postgres/db:/var/lib/postgres/data
+        ports:
+            - "5432:5432"
+        restart: always

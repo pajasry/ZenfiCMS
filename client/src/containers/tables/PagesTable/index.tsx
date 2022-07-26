@@ -1,11 +1,16 @@
 import { Table } from "@/components/core";
 import { Column, RowAction } from "@/types";
 import { useMemo } from "react";
+import { useQuery, gql } from "@apollo/client";
+import { PagesQuery, PagesQueryVariables } from "@/graphql/schema";
 
 /**
  * Pages table component
  */
 export const PagesTable = () => {
+    const { data } = useQuery<PagesQuery, PagesQueryVariables>(GET_PAGES);
+    console.log(data);
+
     const actions = useMemo<RowAction<typeof dataItem>[]>(
         () => [
             { title: "Upravit", onClick: () => alert("edit") },
@@ -42,6 +47,14 @@ export const PagesTable = () => {
 
     return <Table columns={columns} data={[dataItem, dataItem]} actions={actions} />;
 };
+
+const GET_PAGES = gql`
+    query GetPages {
+        pages {
+            id
+        }
+    }
+`;
 
 // Placeholder data
 const dataItem = {

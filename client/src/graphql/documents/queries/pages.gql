@@ -1,0 +1,6 @@
+query pages{
+    pages{
+        id
+        name
+    }
+}
