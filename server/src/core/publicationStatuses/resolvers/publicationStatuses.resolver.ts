@@ -1,5 +1,6 @@
 import { Args, Query, Resolver } from "@nestjs/graphql";
-import { PublicationStatusesEntity, PublicationStatusesService } from "@/core/publicationStatuses";
+import { PublicationStatusesService } from "@/publicationStatuses/services/publicationStatuses.service";
+import { PublicationStatusesEntity } from "@/publicationStatuses/entities/publicationStatuses.entity";
 
 @Resolver(() => PublicationStatusesEntity)
 export class PublicationStatusesResolver {

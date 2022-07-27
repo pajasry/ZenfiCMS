@@ -1,7 +1,8 @@
 import { Args, Query, Resolver } from "@nestjs/graphql";
-import { PagesEntity, PagesService } from "@/core/pages";
+import { PagesEntity } from "@/pages/entities/pages.entity";
+import { PagesService } from "@/pages/services/pages.service";
 
-@Resolver(() => PagesEntity)
+@Resolver(() => PagesResolver)
 export class PagesResolver {
     constructor(private readonly pagesService: PagesService) {}
 

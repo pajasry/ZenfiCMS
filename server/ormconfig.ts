@@ -8,7 +8,8 @@ const connection: ConnectionOptions = {
     password: "password",
     database: "zenficms-db",
     synchronize: false,
-    entities: ["src/**/**.entity.ts"],
+    entities: ["dist/src/**/**.entity.js"],
+    migrations: ["dist/src/migrations/**.js"],
     cli: { migrationsDir: "src/migrations" },
 };
 

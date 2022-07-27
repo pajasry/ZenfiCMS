@@ -1,6 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { PagesEntity, PagesResolver, PagesService } from "@/core/pages";
+import { PagesResolver } from "@/pages/resolvers/pages.resolver";
+import { PagesService } from "@/pages/services/pages.service";
+import { PagesEntity } from "@/pages/entities/pages.entity";
 
 @Module({
     imports: [TypeOrmModule.forFeature([PagesEntity])],
