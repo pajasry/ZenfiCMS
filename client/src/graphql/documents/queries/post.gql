@@ -1,5 +1,5 @@
-query page($id: String!){
-    page(id: $id){
+query post($id: String!){
+    post(id: $id){
         author{
             createdAt
             email

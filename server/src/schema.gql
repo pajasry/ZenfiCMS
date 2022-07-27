@@ -1,0 +1,48 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type PagesEntity {
+  author: UsersEntity!
+  createdAt: String!
+  description: String!
+  id: String!
+  name: String!
+  status: PublicationStatusesEntity!
+  updatedAt: String!
+}
+
+type PostsEntity {
+  author: UsersEntity!
+  createdAt: String!
+  description: String!
+  id: String!
+  name: String!
+  status: PublicationStatusesEntity!
+  updatedAt: String!
+}
+
+type PublicationStatusesEntity {
+  id: String!
+  name: String!
+}
+
+type Query {
+  page(id: String!): PagesEntity!
+  pages: [PagesEntity!]!
+  post(id: String!): PostsEntity!
+  posts: [PostsEntity!]!
+  user(id: String!): UsersEntity!
+  users: [UsersEntity!]!
+}
+
+type UsersEntity {
+  createdAt: String!
+  email: String!
+  firstName: String
+  id: String!
+  lastName: String
+  pages: [PagesEntity!]!
+  posts: [PostsEntity!]!
+  updatedAt: String!
+}

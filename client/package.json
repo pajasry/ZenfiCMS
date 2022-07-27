@@ -9,7 +9,7 @@
         "lint:fix": "npm run lint -- --fix",
         "prettier": "npx prettier src --check",
         "prettier:fix": "npm run prettier -- --write",
-        "graphql:documents": "gqlg --schemaFilePath ../schema.gql --destDirPath src/graphql/documents --depthLimit 5",
+        "graphql:documents": "gqlg --schemaFilePath ../server/src/schema.gql --destDirPath src/graphql/documents",
         "graphql:generate": "graphql-codegen -r dotenv/config",
         "graphql": "concurrently npm:graphql:*"
     },

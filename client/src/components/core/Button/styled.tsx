@@ -4,7 +4,6 @@ import { WithDefaultTheme } from "@/types";
 import { rgba } from "polished";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
-import * as StyledText from "@/components/core/Text/styled";
 
 export const Wrapper = styled.button<StyledButtonProps>`
     border-width: 1px;
@@ -45,10 +44,6 @@ export const Wrapper = styled.button<StyledButtonProps>`
         margin-right: ${({ value }) => (value ? "8px" : "0px")};
         fill: ${(props) => (props.outline ? parseColorVariant(props) : "#fff")};
     }
-`;
-
-export const Value = styled(StyledText.Wrapper)`
-    font-weight: 600;
 `;
 
 const parseColorVariant = (props: StyledButtonProps & WithDefaultTheme) => {
