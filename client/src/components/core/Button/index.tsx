@@ -1,4 +1,4 @@
-import { Icon, IconName } from "@/components/core";
+import { Icon, IconName, Text } from "@/components/core";
 import { Variant } from "@/types";
 import * as Styled from "./styled";
 
@@ -9,11 +9,7 @@ export const Button = ({ value, icon, variant = "primary", ...props }: ButtonPro
     return (
         <Styled.Wrapper variant={variant} value={value} {...props}>
             {icon && <Icon name={icon} />}
-            {value && (
-                <Styled.Value size="body" weight={600}>
-                    {value}
-                </Styled.Value>
-            )}
+            {value && <Text size="body" weight={600} value={value} />}
         </Styled.Wrapper>
     );
 };

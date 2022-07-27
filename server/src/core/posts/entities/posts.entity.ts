@@ -1,3 +1,4 @@
+import { Field, ObjectType } from "@nestjs/graphql";
 import {
     Column,
     CreateDateColumn,
@@ -6,13 +7,12 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { Field, ObjectType } from "@nestjs/graphql";
 import { PublicationStatusesEntity } from "@/core/publicationStatuses";
 import { UsersEntity } from "@/core/users";
 
 @ObjectType()
-@Entity("pages")
-export class PagesEntity {
+@Entity("posts")
+export class PostsEntity {
     @Field()
     @PrimaryGeneratedColumn("uuid")
     id: string;
@@ -38,6 +38,6 @@ export class PagesEntity {
     status: PublicationStatusesEntity;
 
     @Field(() => UsersEntity)
-    @ManyToOne(() => UsersEntity, (e) => e.pages)
+    @ManyToOne(() => UsersEntity, (e) => e.posts)
     author: UsersEntity;
 }

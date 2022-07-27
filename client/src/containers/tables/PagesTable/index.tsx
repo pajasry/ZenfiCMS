@@ -52,6 +52,7 @@ const GET_PAGES = gql`
     query GetPages {
         pages {
             id
+            name
         }
     }
 `;

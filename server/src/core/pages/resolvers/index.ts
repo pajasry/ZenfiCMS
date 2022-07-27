@@ -1,1 +1,1 @@
-export * from "./pages.resolvers";
+export * from "./pages.resolver";

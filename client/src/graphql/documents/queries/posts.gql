@@ -1,5 +1,5 @@
-query page($id: String!){
-    page(id: $id){
+query posts{
+    posts{
         author{
             createdAt
             email
@@ -14,14 +14,6 @@ query page($id: String!){
                     id
                     lastName
                     posts{
-                        author{
-                            createdAt
-                            email
-                            firstName
-                            id
-                            lastName
-                            updatedAt
-                        }
                         createdAt
                         description
                         id
@@ -50,10 +42,6 @@ query page($id: String!){
         description
         id
         name
-        status{
-            id
-            name
-        }
         updatedAt
     }
 }

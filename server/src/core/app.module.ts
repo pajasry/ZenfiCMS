@@ -4,13 +4,14 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { getMetadataArgsStorage } from "typeorm";
+
 import { PagesModule } from "@/core/pages";
-import { join } from "path";
+import { UsersModule } from "@/core/users";
+import { PostsModule } from "@/core/posts";
+import { PublicationStatusesModule } from "@/core/publicationStatuses";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const connection = require("../../ormconfig");
-
-console.log(process.cwd());
 
 @Module({
     imports: [
@@ -21,12 +22,15 @@ console.log(process.cwd());
         }),
         GraphQLModule.forRoot<ApolloDriverConfig>({
             driver: ApolloDriver,
-            autoSchemaFile: true,
+            autoSchemaFile: "src/schema.gql",
             sortSchema: true,
             playground: false,
             plugins: [ApolloServerPluginLandingPageLocalDefault()],
         }),
+        UsersModule,
+        PublicationStatusesModule,
         PagesModule,
+        PostsModule,
     ],
     controllers: [],
     providers: [],
