@@ -18,7 +18,11 @@
         "forceConsistentCasingInFileNames": false,
         "noFallthroughCasesInSwitch": false,
         "paths": {
-            "@/*": ["src/*"]
+            "@/interceptors/*": ["src/interceptors/*"],
+            "@/pages/*": ["src/core/pages/*"],
+            "@/posts/*": ["src/core/posts/*"],
+            "@/publicationStatuses/*": ["src/core/publicationStatuses/*"],
+            "@/users/*": ["src/core/users/*"]
         }
     }
 }

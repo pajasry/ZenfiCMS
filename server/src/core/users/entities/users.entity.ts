@@ -7,8 +7,8 @@ import {
     UpdateDateColumn,
 } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
-import { PagesEntity } from "@/core/pages";
-import { PostsEntity } from "@/core/posts";
+import { PostsEntity } from "@/posts/entities/posts.entity";
+import { PagesEntity } from "@/pages/entities/pages.entity";
 
 @ObjectType()
 @Entity("users")

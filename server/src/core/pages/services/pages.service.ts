@@ -1,7 +1,7 @@
 import { FindManyOptions, FindOneOptions, Repository } from "typeorm";
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { PagesEntity } from "@/core/pages";
 import { InjectRepository } from "@nestjs/typeorm";
+import { PagesEntity } from "@/pages/entities/pages.entity";
 
 @Injectable()
 export class PagesService {

@@ -7,8 +7,8 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { PublicationStatusesEntity } from "@/core/publicationStatuses";
-import { UsersEntity } from "@/core/users";
+import { PublicationStatusesEntity } from "@/publicationStatuses/entities/publicationStatuses.entity";
+import { UsersEntity } from "@/users/entities/users.entity";
 
 @ObjectType()
 @Entity("posts")

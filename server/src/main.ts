@@ -2,7 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./core/app.module";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { Logger, ValidationPipe } from "@nestjs/common";
-import { TransformInterceptor } from "@/interceptors";
+import { TransformInterceptor } from "@/interceptors/transform.interceptor";
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);

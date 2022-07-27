@@ -4,11 +4,10 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { getMetadataArgsStorage } from "typeorm";
-
-import { PagesModule } from "@/core/pages";
-import { UsersModule } from "@/core/users";
-import { PostsModule } from "@/core/posts";
-import { PublicationStatusesModule } from "@/core/publicationStatuses";
+import { PublicationStatusesModule } from "@/publicationStatuses/publicationStatuses.module";
+import { UsersModule } from "@/users/users.module";
+import { PagesModule } from "@/pages/pages.module";
+import { PostsModule } from "@/posts/posts.module";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const connection = require("../../ormconfig");
