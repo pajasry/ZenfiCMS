@@ -30,6 +30,14 @@ export class UsersEntity {
     email: string;
 
     @Field()
+    @Column()
+    password: string;
+
+    @Field({ nullable: true })
+    @Column({ nullable: true })
+    refreshToken?: string;
+
+    @Field()
     @CreateDateColumn()
     createdAt: string;
 

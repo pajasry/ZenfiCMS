@@ -19,6 +19,7 @@
         "noFallthroughCasesInSwitch": false,
         "paths": {
             "@/interceptors/*": ["src/interceptors/*"],
+            "@/auth/*": ["src/core/auth/*"],
             "@/pages/*": ["src/core/pages/*"],
             "@/posts/*": ["src/core/posts/*"],
             "@/publicationStatuses/*": ["src/core/publicationStatuses/*"],
