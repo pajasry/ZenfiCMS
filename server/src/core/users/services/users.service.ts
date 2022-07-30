@@ -1,28 +1,40 @@
-import { FindManyOptions, FindOneOptions, Repository } from "typeorm";
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
+import { forwardRef, Inject, Injectable } from "@nestjs/common";
 import { UsersEntity } from "@/users/entities/users.entity";
+import { UsersRepository } from "@/users/repositories/users.repository";
+import { CreateUserInput } from "@/users/resolvers/users.resolver-input";
+import { JwtTokensRepository } from "@/auth/repositories/jwtTokens.repository";
+import { AuthService } from "@/auth/services/auth.service";
+import * as bcrypt from "bcrypt";
+import * as _ from "lodash";
 
 @Injectable()
 export class UsersService {
     constructor(
-        @InjectRepository(UsersEntity)
-        private readonly usersEntityRepository: Repository<UsersEntity>
+        @Inject(forwardRef(() => AuthService))
+        private readonly authService: AuthService,
+        private readonly usersRepository: UsersRepository,
+        private readonly jwtTokensRepository: JwtTokensRepository
     ) {}
 
-    async findAll(searchOptions?: FindManyOptions<UsersEntity>): Promise<UsersEntity[]> {
-        return this.usersEntityRepository.find(searchOptions);
-    }
+    async createUser(createUserInput: CreateUserInput): Promise<UsersEntity> {
+        const { firstName, lastName, password, email } = createUserInput;
+        const parsedEmail = _.toLower(email);
 
-    async findOneOrFail(searchOptions?: FindOneOptions<UsersEntity>): Promise<UsersEntity> {
-        try {
-            return await this.usersEntityRepository.findOneOrFail(searchOptions);
-        } catch (error) {
-            throw new NotFoundException("Uživatel nebyl nalezena");
-        }
-    }
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt);
 
-    async findOne(searchOptions?: FindOneOptions<UsersEntity>): Promise<UsersEntity> {
-        return this.usersEntityRepository.findOne(searchOptions);
+        const user = this.usersRepository.create({
+            firstName,
+            lastName,
+            email: parsedEmail,
+            password: hashedPassword,
+        });
+
+        const generatedToken = this.authService.generateJWTToken(user.id);
+        user.jwtToken = this.jwtTokensRepository.create({
+            value: generatedToken,
+        });
+
+        return this.usersRepository.save(user);
     }
 }

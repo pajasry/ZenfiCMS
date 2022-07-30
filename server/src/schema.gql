@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateUserInput {
+  email: String!
+  firstName: String
+  lastName: String
+  password: String!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -13,6 +20,7 @@ type LoginOutput {
 }
 
 type Mutation {
+  createUser(createUserInput: CreateUserInput!): UsersEntity!
   login(loginInput: LoginInput!): LoginOutput!
 }
 
@@ -57,8 +65,6 @@ type UsersEntity {
   id: String!
   lastName: String
   pages: [PagesEntity!]!
-  password: String!
   posts: [PostsEntity!]!
-  refreshToken: String
   updatedAt: String!
 }

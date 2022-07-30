@@ -53,6 +53,10 @@ const GET_PAGES = gql`
         pages {
             id
             name
+            createdAt
+            status {
+                name
+            }
         }
     }
 `;

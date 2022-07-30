@@ -1,6 +1,4 @@
-import { ConnectionOptions } from "typeorm";
-
-const connection: ConnectionOptions = {
+const connection = {
     type: "postgres",
     host: "localhost",
     port: 5432,
@@ -8,8 +6,8 @@ const connection: ConnectionOptions = {
     password: "password",
     database: "zenficms-db",
     synchronize: false,
-    entities: ["dist/src/**/**.entity.js"],
-    migrations: ["dist/src/migrations/**.js"],
+    entities: ["dist/**/**.entity.js"],
+    migrations: ["dist/migrations/**.js"],
     cli: { migrationsDir: "src/migrations" },
 };
 
