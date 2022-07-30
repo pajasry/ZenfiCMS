@@ -1,18 +1,21 @@
 import { Args, Query, Resolver } from "@nestjs/graphql";
 import { PagesEntity } from "@/pages/entities/pages.entity";
-import { PagesService } from "@/pages/services/pages.service";
+import { PagesRepository } from "@/pages/repositories/pages.repository";
+import { UseGuards } from "@nestjs/common";
+import { AuthGuard } from "@/auth/guards/auth.guard";
 
-@Resolver(() => PagesResolver)
+@UseGuards(AuthGuard)
+@Resolver(() => PagesEntity)
 export class PagesResolver {
-    constructor(private readonly pagesService: PagesService) {}
+    constructor(private readonly pagesRepository: PagesRepository) {}
 
     @Query(() => [PagesEntity])
     async pages(): Promise<PagesEntity[]> {
-        return this.pagesService.findAll();
+        return this.pagesRepository.find();
     }
 
     @Query(() => PagesEntity)
     async page(@Args("id") id: string): Promise<PagesEntity> {
-        return this.pagesService.findOne({ where: { id } });
+        return this.pagesRepository.findOneById(id);
     }
 }

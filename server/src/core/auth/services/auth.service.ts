@@ -22,10 +22,7 @@ export class AuthService {
         const { email, password } = loginInput;
         const parsedEmail = _.toLower(email);
 
-        const user = await this.usersRepository.findOne({
-            where: { email: parsedEmail },
-            relations: ["jwtToken"],
-        });
+        const user = await this.usersRepository.findOneByEmail(parsedEmail);
         if (!user) throw new InvalidDataException();
 
         const isPasswordValid = await bcrypt.compare(password, user.password);

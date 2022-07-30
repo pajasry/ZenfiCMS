@@ -20,10 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         const authHeader = (req.headers as any).authorization;
         const token = authHeader?.replace("Bearer ", "");
 
-        const user = await this.usersRepository.findOne({
-            where: { id: payload.userId },
-            relations: ["jwtToken"],
-        });
+        const user = await this.usersRepository.findOneById(payload.userId);
 
         const notAllowedAccess =
             !user || user?.jwtToken.value !== token || user?.jwtToken.isRevoked;

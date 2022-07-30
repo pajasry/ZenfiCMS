@@ -6,44 +6,6 @@ query page($id: String!){
             firstName
             id
             lastName
-            pages{
-                author{
-                    createdAt
-                    email
-                    firstName
-                    id
-                    lastName
-                    posts{
-                        author{
-                            createdAt
-                            email
-                            firstName
-                            id
-                            lastName
-                            updatedAt
-                        }
-                        createdAt
-                        description
-                        id
-                        name
-                        status{
-                            id
-                            name
-                        }
-                        updatedAt
-                    }
-                    updatedAt
-                }
-                createdAt
-                description
-                id
-                name
-                status{
-                    id
-                    name
-                }
-                updatedAt
-            }
             updatedAt
         }
         createdAt

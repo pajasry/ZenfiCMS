@@ -35,7 +35,7 @@ export class UsersEntity {
     @Column()
     password: string;
 
-    @OneToOne(() => JwtTokensEntity, { cascade: true })
+    @OneToOne(() => JwtTokensEntity, { cascade: true, eager: true })
     @JoinColumn()
     jwtToken: JwtTokensEntity;
 
@@ -47,11 +47,9 @@ export class UsersEntity {
     @UpdateDateColumn()
     updatedAt: string;
 
-    @Field(() => [PagesEntity])
     @OneToMany(() => PagesEntity, (e) => e.author)
     pages: PagesEntity[];
 
-    @Field(() => [PostsEntity])
     @OneToMany(() => PostsEntity, (e) => e.author)
     posts: PostsEntity[];
 }

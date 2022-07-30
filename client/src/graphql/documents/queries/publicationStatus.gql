@@ -1,0 +1,6 @@
+query publicationStatus($id: String!){
+    publicationStatus(id: $id){
+        id
+        name
+    }
+}

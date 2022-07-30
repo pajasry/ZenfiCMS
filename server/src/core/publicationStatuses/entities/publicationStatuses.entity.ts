@@ -9,6 +9,6 @@ export class PublicationStatusesEntity {
     id: string;
 
     @Field()
-    @Column()
+    @Column({ unique: true })
     name: string;
 }

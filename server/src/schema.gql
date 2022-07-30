@@ -54,6 +54,8 @@ type Query {
   pages: [PagesEntity!]!
   post(id: String!): PostsEntity!
   posts: [PostsEntity!]!
+  publicationStatus(id: String!): PublicationStatusesEntity!
+  publicationStatuses: [PublicationStatusesEntity!]!
   user(id: String!): UsersEntity!
   users: [UsersEntity!]!
 }
@@ -64,7 +66,5 @@ type UsersEntity {
   firstName: String
   id: String!
   lastName: String
-  pages: [PagesEntity!]!
-  posts: [PostsEntity!]!
   updatedAt: String!
 }

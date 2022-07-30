@@ -1,0 +1,6 @@
+query publicationStatuses{
+    publicationStatuses{
+        id
+        name
+    }
+}

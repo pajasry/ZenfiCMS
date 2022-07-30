@@ -54,9 +54,6 @@ const GET_PAGES = gql`
             id
             name
             createdAt
-            status {
-                name
-            }
         }
     }
 `;

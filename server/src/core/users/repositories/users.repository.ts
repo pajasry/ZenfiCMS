@@ -7,7 +7,7 @@ import {
     SelectQueryBuilder,
 } from "typeorm";
 import { UsersEntity } from "@/users/entities/users.entity";
-import { ConflictException, NotFoundException } from "@nestjs/common";
+import { BadRequestException, NotFoundException } from "@nestjs/common";
 
 @EntityRepository(UsersEntity)
 export class UsersRepository extends AbstractRepository<UsersEntity> {
@@ -23,7 +23,7 @@ export class UsersRepository extends AbstractRepository<UsersEntity> {
         try {
             return await this.repository.save(user);
         } catch (error) {
-            throw new ConflictException("Uživatel s těmito údaji již existuje");
+            throw new BadRequestException(error.message);
         }
     }
 
