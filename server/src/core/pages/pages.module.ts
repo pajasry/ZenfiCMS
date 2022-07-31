@@ -2,10 +2,10 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { PagesResolver } from "@/pages/resolvers/pages.resolver";
 import { PagesService } from "@/pages/services/pages.service";
-import { PagesEntity } from "@/pages/entities/pages.entity";
+import { PagesRepository } from "@/pages/repositories/pages.repository";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([PagesEntity])],
+    imports: [TypeOrmModule.forFeature([PagesRepository])],
     exports: [PagesResolver, PagesService],
     providers: [PagesResolver, PagesService],
 })

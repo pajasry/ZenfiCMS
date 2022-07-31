@@ -1,11 +1,16 @@
-import { Module } from "@nestjs/common";
+import { forwardRef, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersResolver } from "@/users/resolvers/users.resolver";
 import { UsersService } from "@/users/services/users.service";
-import { UsersEntity } from "@/users/entities/users.entity";
+import { UsersRepository } from "@/users/repositories/users.repository";
+import { JwtTokensRepository } from "@/auth/repositories/jwtTokens.repository";
+import { AuthModule } from "@/auth/auth.module";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([UsersEntity])],
+    imports: [
+        forwardRef(() => AuthModule),
+        TypeOrmModule.forFeature([UsersRepository, JwtTokensRepository]),
+    ],
     exports: [UsersResolver, UsersService],
     providers: [UsersResolver, UsersService],
 })

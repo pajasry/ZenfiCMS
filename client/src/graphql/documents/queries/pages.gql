@@ -6,42 +6,16 @@ query pages{
             firstName
             id
             lastName
-            pages{
-                createdAt
-                description
-                id
-                name
-                status{
-                    id
-                    name
-                }
-                updatedAt
-            }
-            posts{
-                author{
-                    createdAt
-                    email
-                    firstName
-                    id
-                    lastName
-                    updatedAt
-                }
-                createdAt
-                description
-                id
-                name
-                status{
-                    id
-                    name
-                }
-                updatedAt
-            }
             updatedAt
         }
         createdAt
         description
         id
         name
+        status{
+            id
+            name
+        }
         updatedAt
     }
 }

@@ -2,6 +2,28 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateUserInput {
+  email: String!
+  firstName: String
+  lastName: String
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginOutput {
+  token: String!
+  user: UsersEntity!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): UsersEntity!
+  login(loginInput: LoginInput!): LoginOutput!
+}
+
 type PagesEntity {
   author: UsersEntity!
   createdAt: String!
@@ -28,10 +50,13 @@ type PublicationStatusesEntity {
 }
 
 type Query {
+  me: UsersEntity!
   page(id: String!): PagesEntity!
   pages: [PagesEntity!]!
   post(id: String!): PostsEntity!
   posts: [PostsEntity!]!
+  publicationStatus(id: String!): PublicationStatusesEntity!
+  publicationStatuses: [PublicationStatusesEntity!]!
   user(id: String!): UsersEntity!
   users: [UsersEntity!]!
 }
@@ -42,7 +67,5 @@ type UsersEntity {
   firstName: String
   id: String!
   lastName: String
-  pages: [PagesEntity!]!
-  posts: [PostsEntity!]!
   updatedAt: String!
 }

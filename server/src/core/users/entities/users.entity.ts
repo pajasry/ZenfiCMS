@@ -2,13 +2,16 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    JoinColumn,
     OneToMany,
+    OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
 import { PostsEntity } from "@/posts/entities/posts.entity";
 import { PagesEntity } from "@/pages/entities/pages.entity";
+import { JwtTokensEntity } from "@/auth/entities/jwtTokens.entity";
 
 @ObjectType()
 @Entity("users")
@@ -26,8 +29,15 @@ export class UsersEntity {
     lastName?: string;
 
     @Field()
-    @Column()
+    @Column({ unique: true })
     email: string;
+
+    @Column()
+    password: string;
+
+    @OneToOne(() => JwtTokensEntity, { cascade: true, eager: true })
+    @JoinColumn()
+    jwtToken: JwtTokensEntity;
 
     @Field()
     @CreateDateColumn()
@@ -37,11 +47,9 @@ export class UsersEntity {
     @UpdateDateColumn()
     updatedAt: string;
 
-    @Field(() => [PagesEntity])
     @OneToMany(() => PagesEntity, (e) => e.author)
     pages: PagesEntity[];
 
-    @Field(() => [PostsEntity])
     @OneToMany(() => PostsEntity, (e) => e.author)
     posts: PostsEntity[];
 }

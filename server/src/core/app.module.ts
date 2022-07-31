@@ -8,6 +8,7 @@ import { PublicationStatusesModule } from "@/publicationStatuses/publicationStat
 import { UsersModule } from "@/users/users.module";
 import { PagesModule } from "@/pages/pages.module";
 import { PostsModule } from "@/posts/posts.module";
+import { AuthModule } from "@/auth/auth.module";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const connection = require("../../ormconfig");
@@ -26,10 +27,11 @@ const connection = require("../../ormconfig");
             playground: false,
             plugins: [ApolloServerPluginLandingPageLocalDefault()],
         }),
-        UsersModule,
         PublicationStatusesModule,
         PagesModule,
         PostsModule,
+        AuthModule,
+        UsersModule,
     ],
     controllers: [],
     providers: [],

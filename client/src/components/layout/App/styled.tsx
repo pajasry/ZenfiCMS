@@ -21,3 +21,14 @@ export const Global = createGlobalStyle`
 `;
 
 export const Wrapper = styled.div``;
+
+export const Loading = styled.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;

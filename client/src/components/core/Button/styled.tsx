@@ -16,18 +16,16 @@ export const Wrapper = styled.button<StyledButtonProps>`
     display: flex;
     cursor: pointer;
     align-items: center;
+    background: ${(props) => parseColorVariant(props)};
+    color: #fff;
 
     ${(props) =>
-        props.outline
-            ? css`
-                  background: none;
-                  border-color: ${parseColorVariant(props)};
-                  color: ${parseColorVariant(props)};
-              `
-            : css`
-                  background: ${parseColorVariant(props)};
-                  color: #fff;
-              `}
+        props.outline &&
+        css`
+            background: none;
+            border-color: ${parseColorVariant(props)};
+            color: ${parseColorVariant(props)};
+        `}
 
     &:hover {
         box-shadow: 0 2px 10px ${(props) => rgba(parseColorVariant(props), 0.3)};

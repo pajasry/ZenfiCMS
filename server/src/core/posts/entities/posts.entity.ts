@@ -34,10 +34,10 @@ export class PostsEntity {
     updatedAt: string;
 
     @Field(() => PublicationStatusesEntity)
-    @ManyToOne(() => PublicationStatusesEntity)
+    @ManyToOne(() => PublicationStatusesEntity, { eager: true })
     status: PublicationStatusesEntity;
 
     @Field(() => UsersEntity)
-    @ManyToOne(() => UsersEntity, (e) => e.posts)
+    @ManyToOne(() => UsersEntity, (e) => e.posts, { eager: true })
     author: UsersEntity;
 }
