@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, GraphQLISODateTime, ObjectType } from "@nestjs/graphql";
 import {
     Column,
     CreateDateColumn,
@@ -25,11 +25,11 @@ export class PostsEntity {
     @Column()
     description: string;
 
-    @Field()
+    @Field(() => GraphQLISODateTime)
     @CreateDateColumn()
     createdAt: string;
 
-    @Field()
+    @Field(() => GraphQLISODateTime)
     @UpdateDateColumn()
     updatedAt: string;
 
