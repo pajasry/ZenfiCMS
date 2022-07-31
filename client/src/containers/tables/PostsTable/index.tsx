@@ -8,7 +8,7 @@ import { Column, RowAction } from "@/types";
  * Posts table
  */
 export const PostsTable = () => {
-    const { data } = useQuery<PostsQuery, PostsQueryVariables>(GET_POSTS);
+    const { data, loading } = useQuery<PostsQuery, PostsQueryVariables>(GET_POSTS);
 
     const actions = useMemo<RowAction<PostsEntity>[]>(
         () => [
@@ -44,7 +44,9 @@ export const PostsTable = () => {
         []
     );
 
-    return <Table actions={actions} columns={columns} data={data?.posts || []} />;
+    return (
+        <Table isLoading={loading} actions={actions} columns={columns} data={data?.posts || []} />
+    );
 };
 
 const GET_POSTS = gql`

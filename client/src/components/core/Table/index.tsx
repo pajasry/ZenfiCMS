@@ -1,13 +1,13 @@
 import { Column, RowAction } from "@/types";
 import * as Styled from "./styled";
 import * as _ from "lodash";
-import { Icon, Text } from "@/components/core";
+import { Alert, Icon, Text } from "@/components/core";
 import { useState } from "react";
 
 /**
  * Table component
  */
-export const Table = ({ columns, data, actions }: TableProps) => {
+export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
     const [actionsPopups, setActionsPopups] = useState<boolean[]>([]);
 
     const updateActionPopup = (index: number, value: boolean) => {
@@ -22,6 +22,14 @@ export const Table = ({ columns, data, actions }: TableProps) => {
 
         if (column.type === "date") return new Date(columnValue).toLocaleDateString();
     };
+
+    if (!isLoading && _.size(data) === 0) {
+        return (
+            <Styled.Wrapper>
+                <Alert variant="warning" value="Nic nebylo nalezeno" />
+            </Styled.Wrapper>
+        );
+    }
 
     return (
         <Styled.Wrapper>
@@ -64,6 +72,7 @@ export const Table = ({ columns, data, actions }: TableProps) => {
 };
 
 interface TableProps {
+    isLoading?: boolean;
     columns: Column<any>[];
     actions: RowAction<any>[];
     data: object[];

@@ -8,7 +8,7 @@ import { PagesEntity, PagesQuery, PagesQueryVariables } from "@/graphql/schema";
  * Pages table component
  */
 export const PagesTable = () => {
-    const { data } = useQuery<PagesQuery, PagesQueryVariables>(GET_PAGES);
+    const { data, loading } = useQuery<PagesQuery, PagesQueryVariables>(GET_PAGES);
 
     const actions = useMemo<RowAction<PagesEntity>[]>(
         () => [
@@ -44,7 +44,9 @@ export const PagesTable = () => {
         []
     );
 
-    return <Table columns={columns} data={data?.pages || []} actions={actions} />;
+    return (
+        <Table isLoading={loading} columns={columns} data={data?.pages || []} actions={actions} />
+    );
 };
 
 const GET_PAGES = gql`

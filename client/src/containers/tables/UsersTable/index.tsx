@@ -8,7 +8,7 @@ import { Column, RowAction } from "@/types";
  * Users table component
  */
 export const UsersTable = () => {
-    const { data } = useQuery<UsersQuery, UsersQueryVariables>(GET_USERS);
+    const { data, loading } = useQuery<UsersQuery, UsersQueryVariables>(GET_USERS);
 
     const actions = useMemo<RowAction<UsersEntity>[]>(
         () => [
@@ -38,7 +38,9 @@ export const UsersTable = () => {
         []
     );
 
-    return <Table actions={actions} columns={columns} data={data?.users || []} />;
+    return (
+        <Table isLoading={loading} actions={actions} columns={columns} data={data?.users || []} />
+    );
 };
 
 const parseName = ({ firstName, lastName }: UsersEntity) => {
