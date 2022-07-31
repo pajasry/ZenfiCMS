@@ -4,6 +4,7 @@ import { TextProps } from "@/components/core";
 export const Wrapper = styled.span<StyledTextProps>`
     font-weight: ${({ weight }) => weight};
     font-family: ${({ theme }) => theme.fontFamily.manrope};
+    display: inline-block;
 
     ${(props) => parseSizeVariant(props)}
 `;

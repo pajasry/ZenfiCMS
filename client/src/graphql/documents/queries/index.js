@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+module.exports.me = fs.readFileSync(path.join(__dirname, 'me.gql'), 'utf8');
 module.exports.page = fs.readFileSync(path.join(__dirname, 'page.gql'), 'utf8');
 module.exports.pages = fs.readFileSync(path.join(__dirname, 'pages.gql'), 'utf8');
 module.exports.post = fs.readFileSync(path.join(__dirname, 'post.gql'), 'utf8');

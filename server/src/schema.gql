@@ -50,6 +50,7 @@ type PublicationStatusesEntity {
 }
 
 type Query {
+  me: UsersEntity!
   page(id: String!): PagesEntity!
   pages: [PagesEntity!]!
   post(id: String!): PostsEntity!

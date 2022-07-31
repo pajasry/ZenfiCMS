@@ -1,3 +1,10 @@
+import { AuthTemplate } from "@/components/layout";
+import { LoginForm } from "@/containers/forms";
+
 export const LoginView = () => {
-    return <div>Login</div>;
+    return (
+        <AuthTemplate title="Přihlášení">
+            <LoginForm />
+        </AuthTemplate>
+    );
 };
