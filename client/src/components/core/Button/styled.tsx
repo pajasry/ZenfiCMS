@@ -6,6 +6,7 @@ import { rgba } from "polished";
 import * as StyledIcon from "@/components/core/Icon/styled";
 
 export const Wrapper = styled.button<StyledButtonProps>`
+    color: #fff;
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
@@ -17,7 +18,7 @@ export const Wrapper = styled.button<StyledButtonProps>`
     cursor: pointer;
     align-items: center;
     background: ${(props) => parseColorVariant(props)};
-    color: #fff;
+    outline: 2px solid ${(props) => rgba(parseColorVariant(props), 0.1)};
 
     ${(props) =>
         props.outline &&

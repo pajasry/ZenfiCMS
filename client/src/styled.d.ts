@@ -9,7 +9,8 @@ declare module "styled-components" {
             success: string;
             warning: string;
             danger: string;
-            white: string;
+            dark: string;
+            light: string;
         };
         fontFamily: {
             manrope: string;

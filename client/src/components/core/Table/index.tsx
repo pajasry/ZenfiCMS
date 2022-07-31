@@ -26,7 +26,7 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
     if (!isLoading && _.size(data) === 0) {
         return (
             <Styled.Wrapper>
-                <Alert variant="warning" value="Nic nebylo nalezeno" />
+                <Alert variant="info" value="Nic nebylo nalezeno" />
             </Styled.Wrapper>
         );
     }

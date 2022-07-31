@@ -28,7 +28,12 @@ export const PagesTable = () => {
             {
                 name: "Stav",
                 field: "status",
-                render: ({ status }) => <Tag variant="success" value={status.name} />,
+                render: ({ status }) => (
+                    <Tag
+                        variant={status.name === "Veřejný" ? "success" : "danger"}
+                        value={status.name}
+                    />
+                ),
             },
             {
                 name: "Datum vytvoření",

@@ -22,14 +22,14 @@ export const MenuItem = styled.li<MenuItemProps>`
     padding: 15px;
     cursor: pointer;
     border-radius: 4px;
-    background: ${({ theme, isActive }) => (isActive ? theme.color.white : "transparent")};
+    background: ${({ theme, isActive }) => (isActive ? theme.color.light : "transparent")};
 
     &:not(:last-child) {
         margin-bottom: 4px;
     }
 
     &:hover {
-        background: ${({ theme }) => theme.color.white};
+        background: ${({ theme }) => theme.color.light};
     }
 
     & ${StyledIcon.Wrapper} {

@@ -13,9 +13,9 @@ export const Global = createGlobalStyle`
     line-height: 20px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
-    color: ${({ theme }) => theme.color.info};
+    color: ${({ theme }) => theme.color.dark};
     font-family: ${({ theme }) => theme.fontFamily.manrope};
-    background: ${({ theme }) => theme.color.white}
+    background: ${({ theme }) => theme.color.light}
   }
   
 `;
