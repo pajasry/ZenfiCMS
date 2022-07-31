@@ -5,6 +5,8 @@ import * as StyledIcon from "@/components/core/Icon/styled";
 export const Wrapper = styled.aside`
     background: #fff;
     padding: 15px 12px;
+    position: sticky;
+    top: 0;
 `;
 
 export const Logo = styled.div`

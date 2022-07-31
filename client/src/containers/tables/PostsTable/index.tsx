@@ -1,16 +1,16 @@
 import { Table, Tag } from "@/components/core";
-import { Column, RowAction } from "@/types";
+import { gql, useQuery } from "@apollo/client";
+import { PostsEntity, PostsQuery, PostsQueryVariables } from "@/graphql/schema";
 import { useMemo } from "react";
-import { useQuery, gql } from "@apollo/client";
-import { PagesEntity, PagesQuery, PagesQueryVariables } from "@/graphql/schema";
+import { Column, RowAction } from "@/types";
 
 /**
- * Pages table component
+ * Posts table
  */
-export const PagesTable = () => {
-    const { data } = useQuery<PagesQuery, PagesQueryVariables>(GET_PAGES);
+export const PostsTable = () => {
+    const { data } = useQuery<PostsQuery, PostsQueryVariables>(GET_POSTS);
 
-    const actions = useMemo<RowAction<PagesEntity>[]>(
+    const actions = useMemo<RowAction<PostsEntity>[]>(
         () => [
             { title: "Upravit", onClick: () => alert("edit") },
             { title: "Odstranit", variant: "danger", onClick: () => alert("remove") },
@@ -18,7 +18,7 @@ export const PagesTable = () => {
         []
     );
 
-    const columns = useMemo<Column<PagesEntity>[]>(
+    const columns = useMemo<Column<PostsEntity>[]>(
         () => [
             {
                 name: "Název",
@@ -44,22 +44,22 @@ export const PagesTable = () => {
         []
     );
 
-    return <Table columns={columns} data={data?.pages || []} actions={actions} />;
+    return <Table actions={actions} columns={columns} data={data?.posts || []} />;
 };
 
-const GET_PAGES = gql`
-    query GET_PAGES {
-        pages {
-            id
+const GET_POSTS = gql`
+    query GET_POSTS {
+        posts {
             name
-            createdAt
             author {
+                lastName
                 firstName
                 email
             }
             status {
                 name
             }
+            createdAt
         }
     }
 `;

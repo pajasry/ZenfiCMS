@@ -20,7 +20,6 @@ export const Table = ({ columns, data, actions }: TableProps) => {
         if (column.render) return column.render(item);
         if (!column.type) return columnValue;
 
-        if (column.type === "status") return <Styled.RowStatus />;
         if (column.type === "date") return new Date(columnValue).toLocaleDateString();
     };
 

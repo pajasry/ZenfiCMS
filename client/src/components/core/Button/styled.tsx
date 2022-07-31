@@ -1,6 +1,6 @@
 import { ButtonProps } from "./";
 import styled, { css } from "styled-components";
-import { WithDefaultTheme } from "@/types";
+import { parseColorVariant } from "@/utils";
 import { rgba } from "polished";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
@@ -43,9 +43,5 @@ export const Wrapper = styled.button<StyledButtonProps>`
         fill: ${(props) => (props.outline ? parseColorVariant(props) : "#fff")};
     }
 `;
-
-const parseColorVariant = (props: StyledButtonProps & WithDefaultTheme) => {
-    return props.theme.color[props.variant || "primary"];
-};
 
 type StyledButtonProps = Pick<ButtonProps, "variant" | "value" | "outline">;

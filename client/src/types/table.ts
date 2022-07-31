@@ -4,7 +4,7 @@ export type Column<T extends object> = {
     name: string;
     field: keyof T;
     grow?: number;
-    type?: "status" | "date";
+    type?: "date";
     render?: (row: T) => JSX.Element | string | number;
 };
 
