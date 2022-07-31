@@ -15,6 +15,7 @@ export const Label = styled(StyledText.Wrapper)`
 `;
 
 export const Error = styled(StyledText.Wrapper)`
+    margin-top: 5px;
     color: ${({ theme }) => theme.color.danger};
 `;
 

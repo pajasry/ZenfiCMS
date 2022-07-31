@@ -1,11 +1,12 @@
 import { ButtonProps } from "./";
 import styled, { css } from "styled-components";
-import { WithDefaultTheme } from "@/types";
+import { parseColorVariant } from "@/utils";
 import { rgba } from "polished";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
 
 export const Wrapper = styled.button<StyledButtonProps>`
+    color: #fff;
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
@@ -17,7 +18,7 @@ export const Wrapper = styled.button<StyledButtonProps>`
     cursor: pointer;
     align-items: center;
     background: ${(props) => parseColorVariant(props)};
-    color: #fff;
+    outline: 2px solid ${(props) => rgba(parseColorVariant(props), 0.1)};
 
     ${(props) =>
         props.outline &&
@@ -43,9 +44,5 @@ export const Wrapper = styled.button<StyledButtonProps>`
         fill: ${(props) => (props.outline ? parseColorVariant(props) : "#fff")};
     }
 `;
-
-const parseColorVariant = (props: StyledButtonProps & WithDefaultTheme) => {
-    return props.theme.color[props.variant || "primary"];
-};
 
 type StyledButtonProps = Pick<ButtonProps, "variant" | "value" | "outline">;

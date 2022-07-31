@@ -8,7 +8,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, GraphQLISODateTime, ObjectType } from "@nestjs/graphql";
 import { PostsEntity } from "@/posts/entities/posts.entity";
 import { PagesEntity } from "@/pages/entities/pages.entity";
 import { JwtTokensEntity } from "@/auth/entities/jwtTokens.entity";
@@ -39,11 +39,11 @@ export class UsersEntity {
     @JoinColumn()
     jwtToken: JwtTokensEntity;
 
-    @Field()
+    @Field(() => GraphQLISODateTime)
     @CreateDateColumn()
     createdAt: string;
 
-    @Field()
+    @Field(() => GraphQLISODateTime)
     @UpdateDateColumn()
     updatedAt: string;
 

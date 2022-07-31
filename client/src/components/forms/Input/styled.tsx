@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { rgba } from "polished";
 
 export const Wrapper = styled.div``;
 
@@ -6,13 +7,13 @@ export const Field = styled.input`
     width: 100%;
     padding: 14px 16px;
     border-radius: 4px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #fff;
-    outline: none;
-    background: ${({ theme }) => theme.color.white};
+    border: none;
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: ${({ theme }) => rgba(theme.color.dark, 0.1)};
+    background: ${({ theme }) => theme.color.light};
 
     &:focus {
-        border-color: ${({ theme }) => theme.color.info};
+        outline-color: ${({ theme }) => rgba(theme.color.dark, 0.2)};
     }
 `;

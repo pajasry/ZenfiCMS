@@ -1,8 +1,9 @@
-import { RowAction as RowActionType, Variant } from "@/types";
+import { RowAction as RowActionType } from "@/types";
 import styled from "styled-components";
 import { rgba } from "polished";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
+import { parseColorVariant } from "@/utils";
 
 export const Wrapper = styled.div``;
 
@@ -16,7 +17,6 @@ export const Row = styled.div<RowProps>`
     padding: 20px 12px;
     background: #fff;
     position: relative;
-    border-bottom: 2px solid ${(props) => props.theme.color.white};
     z-index: ${(props) => (props.active ? 10 : 1)};
 
     &:nth-child(2) {
@@ -27,6 +27,10 @@ export const Row = styled.div<RowProps>`
     &:last-child {
         border-bottom-right-radius: 4px;
         border-bottom-left-radius: 4px;
+    }
+
+    &:not(:last-child) {
+        border-bottom: 1px solid ${(props) => rgba(props.theme.color.dark, 0.1)};
     }
 `;
 
@@ -62,10 +66,10 @@ export const RowAction = styled.div<RowActionProps>`
     padding: 12px;
     cursor: pointer;
     width: 100%;
-    color: ${({ theme, variant = "info" }) => theme.color[variant as Variant]};
+    color: ${(props) => parseColorVariant(props)};
 
     &:hover {
-        background: ${(props) => props.theme.color.white};
+        background: ${(props) => rgba(parseColorVariant(props), 0.1)};
     }
 `;
 

@@ -6,7 +6,7 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from "typeorm";
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, GraphQLISODateTime, ObjectType } from "@nestjs/graphql";
 import { PublicationStatusesEntity } from "@/publicationStatuses/entities/publicationStatuses.entity";
 import { UsersEntity } from "@/users/entities/users.entity";
 
@@ -25,11 +25,11 @@ export class PagesEntity {
     @Column()
     description: string;
 
-    @Field()
+    @Field(() => GraphQLISODateTime)
     @CreateDateColumn()
     createdAt: string;
 
-    @Field()
+    @Field(() => GraphQLISODateTime)
     @UpdateDateColumn()
     updatedAt: string;
 
