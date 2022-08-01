@@ -1,8 +1,8 @@
-import { RowAction as RowActionType } from "@/types";
-import styled from "styled-components";
 import { rgba } from "polished";
+import styled from "styled-components";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
+import { RowAction as RowActionType } from "@/types";
 import { parseColorVariant } from "@/utils";
 
 export const Wrapper = styled.div``;

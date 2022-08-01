@@ -17,7 +17,6 @@ export const Global = createGlobalStyle`
     font-family: ${({ theme }) => theme.fontFamily.manrope};
     background: ${({ theme }) => theme.color.light}
   }
-  
 `;
 
 export const Wrapper = styled.div``;

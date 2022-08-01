@@ -1,5 +1,7 @@
-import * as Styled from "./styled";
+import { Text } from "@/components/core";
 import { Variant } from "@/types";
+
+import * as Styled from "./styled";
 
 /**
  * Tag component
@@ -7,7 +9,7 @@ import { Variant } from "@/types";
 export const Tag = ({ variant = "primary", value }: TagProps) => {
     return (
         <Styled.Wrapper variant={variant}>
-            <Styled.Value size="caption" weight={600} value={value} />
+            <Text size="caption" weight={600} value={value} />
         </Styled.Wrapper>
     );
 };

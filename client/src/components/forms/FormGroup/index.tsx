@@ -1,5 +1,7 @@
-import { PropsWithChildren } from "@/types";
 import { useField } from "formik";
+
+import { PropsWithChildren } from "@/types";
+
 import * as Styled from "./styled";
 
 /**

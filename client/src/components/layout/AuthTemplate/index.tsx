@@ -1,6 +1,7 @@
-import * as Styled from "./styled";
-import { Head } from "@/components/layout";
+import { TemplateHead } from "@/components/layout";
 import { PropsWithChildren } from "@/types";
+
+import * as Styled from "./styled";
 
 /**
  * Auth template
@@ -8,7 +9,7 @@ import { PropsWithChildren } from "@/types";
 export const AuthTemplate = ({ title, children }: Props) => {
     return (
         <Styled.Wrapper>
-            <Head title={title} />
+            <TemplateHead title={title} />
             <Styled.Body>
                 <Styled.BodyTitle size="headline" weight={600}>
                     {title}

@@ -1,5 +1,6 @@
 import { Icon, IconName, Text } from "@/components/core";
 import { Variant } from "@/types";
+
 import * as Styled from "./styled";
 
 /**

@@ -1,7 +1,9 @@
-import * as Styled from "./styled";
+import { useRouter } from "next/router";
+
 import { Icon, IconName, Text } from "@/components/core";
-import { RoutesName } from "@/components/routing";
-import { useNavigate, useLocation } from "react-router";
+import { RoutesName } from "@/types";
+
+import * as Styled from "./styled";
 
 /**
  * Sidebar component
@@ -26,13 +28,12 @@ export const Sidebar = () => {
 };
 
 const MenuItem = ({ icon, route, value }: MenuItemProps) => {
-    const navigate = useNavigate();
-    const location = useLocation();
+    const router = useRouter();
 
-    const isActive = route === location.pathname;
+    const isActive = route === router.pathname;
 
     return (
-        <Styled.MenuItem isActive={isActive} onClick={() => navigate(route)}>
+        <Styled.MenuItem isActive={isActive} onClick={() => router.push(route)}>
             <Icon name={icon} />
             <Text value={value} weight={600} />
         </Styled.MenuItem>

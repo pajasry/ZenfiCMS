@@ -1,7 +1,8 @@
-import { Table } from "@/components/core";
 import { gql, useQuery } from "@apollo/client";
-import { UsersEntity, UsersQuery, UsersQueryVariables } from "@/graphql/schema";
 import { useMemo } from "react";
+
+import { Table } from "@/components/core";
+import { UsersEntity, UsersQuery, UsersQueryVariables } from "@/graphql/schema";
 import { Column, RowAction } from "@/types";
 
 /**

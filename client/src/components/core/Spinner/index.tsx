@@ -1,4 +1,5 @@
 import { defaultTheme } from "@/theme";
+
 import * as Styled from "./styled";
 
 export const Spinner = ({ height = 40, width = 40 }: SpinnerProps) => {
@@ -8,7 +9,7 @@ export const Spinner = ({ height = 40, width = 40 }: SpinnerProps) => {
             height={height}
             strokeWidth={4}
             color={defaultTheme.color.primary}
-            secondaryColor={defaultTheme.color.white}
+            secondaryColor={defaultTheme.color.light}
         />
     );
 };

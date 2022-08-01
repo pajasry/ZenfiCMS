@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: ${({ theme }) => theme.color.white};
+    background: ${({ theme }) => theme.color.light};
 `;
 
 export const Body = styled.div`

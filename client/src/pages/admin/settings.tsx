@@ -1,8 +1,10 @@
 import { Template } from "@/components/layout";
 
 /**
- * Settings view
+ * Settings page
  */
-export const SettingsView = () => {
+const Settings = () => {
     return <Template title="Nastavení">SettingsView</Template>;
 };
+
+export default Settings;
