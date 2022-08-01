@@ -1,7 +1,8 @@
-import { Table, Tag } from "@/components/core";
 import { gql, useQuery } from "@apollo/client";
-import { PostsEntity, PostsQuery, PostsQueryVariables } from "@/graphql/schema";
 import { useMemo } from "react";
+
+import { Table, Tag } from "@/components/core";
+import { PostsEntity, PostsQuery, PostsQueryVariables } from "@/graphql/schema";
 import { Column, RowAction } from "@/types";
 
 /**

@@ -1,8 +1,9 @@
-import { Table, Tag } from "@/components/core";
-import { Column, RowAction } from "@/types";
+import { gql,useQuery } from "@apollo/client";
 import { useMemo } from "react";
-import { useQuery, gql } from "@apollo/client";
+
+import { Table, Tag } from "@/components/core";
 import { PagesEntity, PagesQuery, PagesQueryVariables } from "@/graphql/schema";
+import { Column, RowAction } from "@/types";
 
 /**
  * Pages table component

@@ -1,5 +1,6 @@
 import { Icon, Text } from "@/components/core";
 import { selectSignedUser, useAppSelector } from "@/redux";
+
 import * as Styled from "./styled";
 
 /**

@@ -1,2 +1,2 @@
-export * from "./styled";
 export * from "./auth";
+export * from "./styled";

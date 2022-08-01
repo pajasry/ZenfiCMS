@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { TemplateProps } from "@/components/layout";
 
-import * as StyledSidebar from "@/components/layout/Sidebar/styled";
+import { TemplateProps } from "@/components/layout";
 import * as StyledNavigation from "@/components/layout/Navigation/styled";
+import * as StyledSidebar from "@/components/layout/Sidebar/styled";
 
 export const Wrapper = styled.div`
     display: grid;

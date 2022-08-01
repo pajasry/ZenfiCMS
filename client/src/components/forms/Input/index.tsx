@@ -1,5 +1,6 @@
-import { ChangeEvent, HTMLInputTypeAttribute } from "react";
 import { useField } from "formik";
+import { ChangeEvent, HTMLInputTypeAttribute } from "react";
+
 import * as Styled from "./styled";
 
 /**

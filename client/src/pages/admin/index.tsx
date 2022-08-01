@@ -2,12 +2,14 @@ import { Template } from "@/components/layout";
 import { Editor } from "@/Editor";
 
 /**
- * Home view
+ * Home page
  */
-export const HomeView = () => {
+const Home = () => {
     return (
         <Template title="Přehled" fluid forceHideNavigation>
             <Editor />
         </Template>
     );
 };
+
+export default Home;

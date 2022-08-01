@@ -1,13 +1,15 @@
-import { LoginInput, LoginMutation, LoginMutationVariables } from "@/graphql/schema";
-import { Form, FormGroup, FormInput } from "@/components/forms";
-import { signInAction, useAppDispatch } from "@/redux";
 import { gql, useMutation } from "@apollo/client";
-import { Button } from "@/components/core";
-import { setAuthToken } from "@/utils";
-import { toast } from "react-toastify";
-import * as Styled from "./styled";
-import * as Yup from "yup";
 import * as _ from "lodash";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
+
+import { Button } from "@/components/core";
+import { Form, FormGroup, FormInput } from "@/components/forms";
+import { LoginInput, LoginMutation, LoginMutationVariables } from "@/graphql/schema";
+import { signInAction, useAppDispatch } from "@/redux";
+import { setAuthToken } from "@/utils";
+
+import * as Styled from "./styled";
 
 /**
  * Login form

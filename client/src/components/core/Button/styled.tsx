@@ -1,9 +1,10 @@
-import { ButtonProps } from "./";
-import styled, { css } from "styled-components";
-import { parseColorVariant } from "@/utils";
 import { rgba } from "polished";
+import styled, { css } from "styled-components";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
+import { parseColorVariant } from "@/utils";
+
+import { ButtonProps } from "./";
 
 export const Wrapper = styled.button<StyledButtonProps>`
     color: #fff;

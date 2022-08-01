@@ -1,8 +1,10 @@
 import { Template } from "@/components/layout";
 
 /**
- * Media view
+ * Media page
  */
-export const MediaView = () => {
+const Media = () => {
     return <Template title="Media">MediaView</Template>;
 };
+
+export default Media;

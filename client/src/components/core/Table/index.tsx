@@ -1,8 +1,10 @@
-import { Column, RowAction } from "@/types";
-import * as Styled from "./styled";
 import * as _ from "lodash";
-import { Alert, Icon, Text } from "@/components/core";
 import { useState } from "react";
+
+import { Alert, Icon, Text } from "@/components/core";
+import { Column, RowAction } from "@/types";
+
+import * as Styled from "./styled";
 
 /**
  * Table component

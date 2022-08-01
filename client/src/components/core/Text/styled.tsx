@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { TextProps } from "@/components/core";
 
 export const Wrapper = styled.span<StyledTextProps>`

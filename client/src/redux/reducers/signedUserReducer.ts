@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppState } from "@/redux/store";
+
 import { UsersEntity } from "@/graphql/schema";
+import { AppState } from "@/redux/store";
 
 interface State {
     signedUser: UsersEntity | null;
