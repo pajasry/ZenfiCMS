@@ -62,8 +62,14 @@ type Query {
   posts: [PostsEntity!]!
   publicationStatus(id: String!): PublicationStatusesEntity!
   publicationStatuses: [PublicationStatusesEntity!]!
+  settings: SettingsEntity!
   user(id: String!): UsersEntity!
   users: [UsersEntity!]!
+}
+
+type SettingsEntity {
+  googleAnalyticsId: String
+  id: String!
 }
 
 type UsersEntity {
