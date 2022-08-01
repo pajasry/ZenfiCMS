@@ -31,6 +31,10 @@ export class PagesRepository extends AbstractRepository<PagesEntity> {
         return this.repository.find(searchOptions);
     }
 
+    async count(): Promise<number> {
+        return this.repository.count();
+    }
+
     async findOneOrFail(searchOptions?: FindOneOptions<PagesEntity>): Promise<PagesEntity> {
         try {
             return await this.repository.findOneOrFail(searchOptions);

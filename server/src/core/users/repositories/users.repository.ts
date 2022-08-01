@@ -27,6 +27,10 @@ export class UsersRepository extends AbstractRepository<UsersEntity> {
         }
     }
 
+    async count(): Promise<number> {
+        return this.repository.count();
+    }
+
     async find(searchOptions?: FindManyOptions<UsersEntity>): Promise<UsersEntity[]> {
         return this.repository.find(searchOptions);
     }

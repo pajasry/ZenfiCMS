@@ -27,6 +27,10 @@ export class PostsRepository extends AbstractRepository<PostsEntity> {
         }
     }
 
+    async count(): Promise<number> {
+        return this.repository.count();
+    }
+
     async find(searchOptions?: FindManyOptions<PostsEntity>): Promise<PostsEntity[]> {
         return this.repository.find(searchOptions);
     }
