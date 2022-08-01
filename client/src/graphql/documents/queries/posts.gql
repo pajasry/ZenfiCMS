@@ -1,21 +1,24 @@
-query posts{
-    posts{
-        author{
+query posts($skip: Int, $take: Int){
+    posts(skip: $skip, take: $take){
+        count
+        items{
+            author{
+                createdAt
+                email
+                firstName
+                id
+                lastName
+                updatedAt
+            }
             createdAt
-            email
-            firstName
-            id
-            lastName
-            updatedAt
-        }
-        createdAt
-        description
-        id
-        name
-        status{
+            description
             id
             name
+            status{
+                id
+                name
+            }
+            updatedAt
         }
-        updatedAt
     }
 }

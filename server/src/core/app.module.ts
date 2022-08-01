@@ -9,6 +9,7 @@ import { UsersModule } from "@/users/users.module";
 import { PagesModule } from "@/pages/pages.module";
 import { PostsModule } from "@/posts/posts.module";
 import { AuthModule } from "@/auth/auth.module";
+import { SettingsModule } from "@/settings/settings.module";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const connection = require("../../ormconfig");
@@ -32,6 +33,7 @@ const connection = require("../../ormconfig");
         PostsModule,
         AuthModule,
         UsersModule,
+        SettingsModule,
     ],
     controllers: [],
     providers: [],
