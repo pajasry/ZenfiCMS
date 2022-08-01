@@ -1,5 +1,5 @@
 overwrite: true
-schema: "${VITE_SERVER}/graphql"
+schema: "${NEXT_PUBLIC_SERVER}/graphql"
 documents: "src/graphql/documents/**/*.gql"
 generates:
     src/graphql/schema.tsx:

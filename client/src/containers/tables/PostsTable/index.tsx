@@ -1,15 +1,26 @@
 import { gql, useQuery } from "@apollo/client";
 import { useMemo } from "react";
 
-import { Table, Tag } from "@/components/core";
+import { Pagination, Table, Tag } from "@/components/core";
 import { PostsEntity, PostsQuery, PostsQueryVariables } from "@/graphql/schema";
+import { usePagination } from "@/hooks/usePagination";
 import { Column, RowAction } from "@/types";
+
+import * as Styled from "./styled";
 
 /**
  * Posts table
  */
 export const PostsTable = () => {
-    const { data, loading } = useQuery<PostsQuery, PostsQueryVariables>(GET_POSTS);
+    const { take, setSkip, skip, count, setCount } = usePagination(10);
+
+    const { data, loading } = useQuery<PostsQuery, PostsQueryVariables>(GET_POSTS, {
+        variables: {
+            skip,
+            take,
+        },
+        onCompleted: (data) => setCount(data.posts.count),
+    });
 
     const actions = useMemo<RowAction<PostsEntity>[]>(
         () => [
@@ -51,23 +62,34 @@ export const PostsTable = () => {
     );
 
     return (
-        <Table isLoading={loading} actions={actions} columns={columns} data={data?.posts || []} />
+        <Styled.Wrapper>
+            <Table
+                isLoading={loading}
+                actions={actions}
+                columns={columns}
+                data={data?.posts.items || []}
+            />
+            <Pagination count={count} take={take} skip={skip} setSkip={setSkip} />
+        </Styled.Wrapper>
     );
 };
 
 const GET_POSTS = gql`
-    query GET_POSTS {
-        posts {
-            name
-            author {
-                lastName
-                firstName
-                email
-            }
-            status {
+    query GET_POSTS($skip: Int, $take: Int) {
+        posts(skip: $skip, take: $take) {
+            count
+            items {
                 name
+                author {
+                    lastName
+                    firstName
+                    email
+                }
+                status {
+                    name
+                }
+                createdAt
             }
-            createdAt
         }
     }
 `;

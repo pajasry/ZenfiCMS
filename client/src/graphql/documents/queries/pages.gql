@@ -1,21 +1,24 @@
-query pages{
-    pages{
-        author{
+query pages($skip: Int, $take: Int){
+    pages(skip: $skip, take: $take){
+        count
+        items{
+            author{
+                createdAt
+                email
+                firstName
+                id
+                lastName
+                updatedAt
+            }
             createdAt
-            email
-            firstName
-            id
-            lastName
-            updatedAt
-        }
-        createdAt
-        description
-        id
-        name
-        status{
+            description
             id
             name
+            status{
+                id
+                name
+            }
+            updatedAt
         }
-        updatedAt
     }
 }

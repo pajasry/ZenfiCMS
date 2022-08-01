@@ -40,7 +40,12 @@ export const UsersTable = () => {
     );
 
     return (
-        <Table isLoading={loading} actions={actions} columns={columns} data={data?.users || []} />
+        <Table
+            isLoading={loading}
+            actions={actions}
+            columns={columns}
+            data={data?.users.items || []}
+        />
     );
 };
 
@@ -51,10 +56,12 @@ const parseName = ({ firstName, lastName }: UsersEntity) => {
 const GET_USERS = gql`
     query GET_USERS {
         users {
-            email
-            firstName
-            lastName
-            createdAt
+            items {
+                email
+                firstName
+                lastName
+                createdAt
+            }
         }
     }
 `;

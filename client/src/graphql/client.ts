@@ -23,4 +23,5 @@ export const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
     ssrMode: typeof window === "undefined",
+    connectToDevTools: true,
 });

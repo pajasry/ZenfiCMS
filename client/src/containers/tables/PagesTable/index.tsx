@@ -1,15 +1,26 @@
-import { gql,useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useMemo } from "react";
 
-import { Table, Tag } from "@/components/core";
+import { Pagination, Table, Tag } from "@/components/core";
 import { PagesEntity, PagesQuery, PagesQueryVariables } from "@/graphql/schema";
+import { usePagination } from "@/hooks/usePagination";
 import { Column, RowAction } from "@/types";
+
+import * as Styled from "./styled";
 
 /**
  * Pages table component
  */
 export const PagesTable = () => {
-    const { data, loading } = useQuery<PagesQuery, PagesQueryVariables>(GET_PAGES);
+    const { skip, setSkip, count, setCount, take } = usePagination(10);
+
+    const { data, loading } = useQuery<PagesQuery, PagesQueryVariables>(GET_PAGES, {
+        variables: {
+            take,
+            skip,
+        },
+        onCompleted: (data) => setCount(data?.pages.count),
+    });
 
     const actions = useMemo<RowAction<PagesEntity>[]>(
         () => [
@@ -51,22 +62,33 @@ export const PagesTable = () => {
     );
 
     return (
-        <Table isLoading={loading} columns={columns} data={data?.pages || []} actions={actions} />
+        <Styled.Wrapper>
+            <Table
+                isLoading={loading}
+                columns={columns}
+                data={data?.pages.items || []}
+                actions={actions}
+            />
+            <Pagination count={count} take={take} skip={skip} setSkip={setSkip} />
+        </Styled.Wrapper>
     );
 };
 
 const GET_PAGES = gql`
-    query GET_PAGES {
-        pages {
-            id
-            name
-            createdAt
-            author {
-                firstName
-                email
-            }
-            status {
+    query GET_PAGES($take: Int, $skip: Int) {
+        pages(take: $take, skip: $skip) {
+            count
+            items {
+                id
                 name
+                createdAt
+                author {
+                    firstName
+                    email
+                }
+                status {
+                    name
+                }
             }
         }
     }
