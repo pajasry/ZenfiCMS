@@ -6,6 +6,7 @@ import { UsersEntity } from "@/users/entities/users.entity";
 import { AuthGuard } from "@/auth/guards/auth.guard";
 import { UseGuards } from "@nestjs/common";
 import { GetUser } from "@/decorators/getUser.decorator";
+import { UsersOutput } from "@/users/resolvers/users.resolver-output";
 
 @UseGuards(AuthGuard)
 @Resolver(() => UsersEntity)
@@ -15,9 +16,12 @@ export class UsersResolver {
         private readonly usersService: UsersService
     ) {}
 
-    @Query(() => [UsersEntity])
-    async users(): Promise<UsersEntity[]> {
-        return this.usersRepository.find();
+    @Query(() => UsersOutput)
+    async users(): Promise<UsersOutput> {
+        const count = await this.usersRepository.count();
+        const users = await this.usersRepository.find();
+
+        return { count, items: users };
     }
 
     @Query(() => UsersEntity)

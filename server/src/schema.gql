@@ -39,6 +39,11 @@ type PagesEntity {
   updatedAt: DateTime!
 }
 
+type PagesOutput {
+  count: Float!
+  items: [PagesEntity!]!
+}
+
 type PostsEntity {
   author: UsersEntity!
   createdAt: DateTime!
@@ -49,6 +54,11 @@ type PostsEntity {
   updatedAt: DateTime!
 }
 
+type PostsOutput {
+  count: Float!
+  items: [PostsEntity!]!
+}
+
 type PublicationStatusesEntity {
   id: String!
   name: String!
@@ -57,14 +67,14 @@ type PublicationStatusesEntity {
 type Query {
   me: UsersEntity!
   page(id: String!): PagesEntity!
-  pages: [PagesEntity!]!
+  pages(skip: Int = 0, take: Int = 25): PagesOutput!
   post(id: String!): PostsEntity!
-  posts: [PostsEntity!]!
+  posts(skip: Int = 0, take: Int = 25): PostsOutput!
   publicationStatus(id: String!): PublicationStatusesEntity!
   publicationStatuses: [PublicationStatusesEntity!]!
   settings: SettingsEntity!
   user(id: String!): UsersEntity!
-  users: [UsersEntity!]!
+  users: UsersOutput!
 }
 
 type SettingsEntity {
@@ -79,4 +89,9 @@ type UsersEntity {
   id: String!
   lastName: String
   updatedAt: DateTime!
+}
+
+type UsersOutput {
+  count: Float!
+  items: [UsersEntity!]!
 }
