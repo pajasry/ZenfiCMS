@@ -17,15 +17,14 @@ export class UsersService {
     ) {}
 
     async createUser(createUserInput: CreateUserInput): Promise<UsersEntity> {
-        const { firstName, lastName, password, email } = createUserInput;
+        const { username, password, email } = createUserInput;
         const parsedEmail = _.toLower(email);
 
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const user = this.usersRepository.create({
-            firstName,
-            lastName,
+            username,
             email: parsedEmail,
             password: hashedPassword,
         });

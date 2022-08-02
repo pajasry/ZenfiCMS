@@ -3,10 +3,9 @@ mutation createUser($createUserInput: CreateUserInput!){
         item{
             createdAt
             email
-            firstName
             id
-            lastName
             updatedAt
+            username
         }
     }
 }

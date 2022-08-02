@@ -4,10 +4,9 @@ query post($id: String!){
             author{
                 createdAt
                 email
-                firstName
                 id
-                lastName
                 updatedAt
+                username
             }
             createdAt
             description
