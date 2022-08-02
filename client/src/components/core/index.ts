@@ -1,6 +1,7 @@
 export * from "./Alert";
 export * from "./Button";
 export * from "./ContentLoader";
+export * from "./DropdownActions";
 export * from "./Icon";
 export * from "./Pagination";
 export * from "./Spinner";

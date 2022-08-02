@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { Pagination, Table, Tag } from "@/components/core";
 import { PagesEntity, PagesQuery, PagesQueryVariables } from "@/graphql/schema";
 import { usePagination } from "@/hooks/usePagination";
-import { Column, RowAction } from "@/types";
+import { TableActionType, TableColumnType } from "@/types";
 
 import * as Styled from "./styled";
 
@@ -22,15 +22,15 @@ export const PagesTable = () => {
         onCompleted: (data) => setCount(data?.pages.count),
     });
 
-    const actions = useMemo<RowAction<PagesEntity>[]>(
+    const actions = useMemo<TableActionType<PagesEntity>[]>(
         () => [
-            { title: "Upravit", onClick: () => alert("edit") },
-            { title: "Odstranit", variant: "danger", onClick: () => alert("remove") },
+            { value: "Upravit", onClick: () => alert("edit") },
+            { value: "Odstranit", variant: "danger", onClick: () => alert("remove") },
         ],
         []
     );
 
-    const columns = useMemo<Column<PagesEntity>[]>(
+    const columns = useMemo<TableColumnType<PagesEntity>[]>(
         () => [
             {
                 name: "Název",

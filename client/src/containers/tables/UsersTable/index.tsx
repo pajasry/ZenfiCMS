@@ -3,7 +3,7 @@ import { useMemo } from "react";
 
 import { Table } from "@/components/core";
 import { UsersEntity, UsersQuery, UsersQueryVariables } from "@/graphql/schema";
-import { Column, RowAction } from "@/types";
+import { TableActionType, TableColumnType } from "@/types";
 
 /**
  * Users table component
@@ -11,15 +11,15 @@ import { Column, RowAction } from "@/types";
 export const UsersTable = () => {
     const { data, loading } = useQuery<UsersQuery, UsersQueryVariables>(GET_USERS);
 
-    const actions = useMemo<RowAction<UsersEntity>[]>(
+    const actions = useMemo<TableActionType<UsersEntity>[]>(
         () => [
-            { title: "Upravit", onClick: () => alert("edit") },
-            { title: "Odstranit", variant: "danger", onClick: () => alert("remove") },
+            { value: "Upravit", onClick: () => alert("edit") },
+            { value: "Odstranit", variant: "danger", onClick: () => alert("remove") },
         ],
         []
     );
 
-    const columns = useMemo<Column<UsersEntity>[]>(
+    const columns = useMemo<TableColumnType<UsersEntity>[]>(
         () => [
             {
                 name: "Jméno",

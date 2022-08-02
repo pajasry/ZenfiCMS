@@ -1,6 +1,6 @@
-import { Variant } from "@/types";
+import { VariantType } from "@/types";
 
-export type Column<T extends object> = {
+export type TableColumnType<T extends object> = {
     name: string;
     field: keyof T;
     grow?: number;
@@ -8,8 +8,8 @@ export type Column<T extends object> = {
     render?: (row: T) => JSX.Element | string | number;
 };
 
-export type RowAction<T extends object> = {
-    title: string;
-    variant?: Variant;
+export type TableActionType<T extends object> = {
+    value: string;
+    variant?: VariantType;
     onClick: (row: T) => void;
 };

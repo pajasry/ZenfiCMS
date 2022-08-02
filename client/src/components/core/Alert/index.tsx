@@ -1,5 +1,5 @@
 import { Text } from "@/components/core";
-import { Variant } from "@/types";
+import { VariantType } from "@/types";
 
 import * as Styled from "./styled";
 
@@ -15,6 +15,6 @@ export const Alert = ({ variant, value }: AlertProps) => {
 };
 
 export interface AlertProps {
-    variant: Variant;
+    variant: VariantType;
     value: string;
 }
