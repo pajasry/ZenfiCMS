@@ -1,9 +1,9 @@
 import { ObjectType } from "@nestjs/graphql";
-import { ItemOutput, ItemsOutput } from "@/helpers/output";
+import { ItemOutput, ItemsOutput } from "@/helpers/outputs";
 import { UsersEntity } from "@/users/entities/users.entity";
 
 @ObjectType()
-export class UsersOutput extends ItemsOutput(UsersEntity) {}
+export class UsersOutput extends ItemsOutput(UsersEntity)<UsersEntity> {}
 
 @ObjectType()
-export class UserOutput extends ItemOutput(UsersEntity) {}
+export class UserOutput extends ItemOutput(UsersEntity)<UsersEntity> {}

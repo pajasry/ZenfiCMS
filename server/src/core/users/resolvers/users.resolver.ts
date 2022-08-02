@@ -6,7 +6,7 @@ import { UsersEntity } from "@/users/entities/users.entity";
 import { AuthGuard } from "@/auth/guards/auth.guard";
 import { UseGuards } from "@nestjs/common";
 import { GetUser } from "@/decorators/getUser.decorator";
-import { UsersOutput } from "@/users/resolvers/users.resolver-output";
+import { UserOutput, UsersOutput } from "@/users/resolvers/users.resolver-output";
 
 @UseGuards(AuthGuard)
 @Resolver(() => UsersEntity)
@@ -24,18 +24,24 @@ export class UsersResolver {
         return { count, items: users };
     }
 
-    @Query(() => UsersEntity)
-    async user(@Args("id") id: string): Promise<UsersEntity> {
-        return this.usersRepository.findOneById(id);
+    @Query(() => UserOutput)
+    async user(@Args("id") id: string): Promise<UserOutput> {
+        const user = await this.usersRepository.findOneById(id);
+
+        return { item: user };
     }
 
-    @Query(() => UsersEntity)
-    async me(@GetUser() user: UsersEntity): Promise<UsersEntity> {
-        return user;
+    @Query(() => UserOutput)
+    async me(@GetUser() user: UsersEntity): Promise<UserOutput> {
+        return { item: user };
     }
 
-    @Mutation(() => UsersEntity)
-    createUser(@Args("createUserInput") createUserInput: CreateUserInput): Promise<UsersEntity> {
-        return this.usersService.createUser(createUserInput);
+    @Mutation(() => UserOutput)
+    async createUser(
+        @Args("createUserInput") createUserInput: CreateUserInput
+    ): Promise<UserOutput> {
+        const user = await this.usersService.createUser(createUserInput);
+
+        return { item: user };
     }
 }

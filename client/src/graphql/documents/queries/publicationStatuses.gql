@@ -1,6 +1,9 @@
 query publicationStatuses{
     publicationStatuses{
-        id
-        name
+        count
+        items{
+            id
+            name
+        }
     }
 }

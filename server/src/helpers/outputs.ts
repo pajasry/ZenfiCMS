@@ -1,9 +1,7 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Type } from "@nestjs/common";
 
-//TODO: Replace any with type
-
-export const ItemsOutput = <I>(ItemType: Type<I>): any => {
+export const ItemsOutput = <I>(ItemType: Type<I>) => {
     @ObjectType({ isAbstract: true })
     abstract class Output<I> {
         @Field(() => [ItemType])
@@ -16,7 +14,7 @@ export const ItemsOutput = <I>(ItemType: Type<I>): any => {
     return Output;
 };
 
-export const ItemOutput = <I>(ItemType: Type<I>): any => {
+export const ItemOutput = <I>(ItemType: Type<I>) => {
     @ObjectType({ isAbstract: true })
     abstract class Output<I> {
         @Field(() => ItemType)

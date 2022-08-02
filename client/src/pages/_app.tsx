@@ -28,7 +28,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const { loading } = useQuery<MeQuery, MeQueryVariables>(ME, {
         onCompleted: (data) => {
             const user = _.omit(data.me, "__typename");
-            dispatch(signInAction(user));
+            dispatch(signInAction(user.item));
         },
     });
 
@@ -73,10 +73,12 @@ const App = ({ Component, pageProps }: AppProps) => {
 const ME = gql`
     query ME {
         me {
-            id
-            email
-            firstName
-            lastName
+            item {
+                id
+                email
+                firstName
+                lastName
+            }
         }
     }
 `;

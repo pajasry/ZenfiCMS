@@ -1,10 +1,12 @@
 query user($id: String!){
     user(id: $id){
-        createdAt
-        email
-        firstName
-        id
-        lastName
-        updatedAt
+        item{
+            createdAt
+            email
+            firstName
+            id
+            lastName
+            updatedAt
+        }
     }
 }

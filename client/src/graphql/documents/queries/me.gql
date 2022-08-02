@@ -1,10 +1,12 @@
 query me{
     me{
-        createdAt
-        email
-        firstName
-        id
-        lastName
-        updatedAt
+        item{
+            createdAt
+            email
+            firstName
+            id
+            lastName
+            updatedAt
+        }
     }
 }
