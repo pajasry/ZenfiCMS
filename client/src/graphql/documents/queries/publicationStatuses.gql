@@ -4,6 +4,7 @@ query publicationStatuses{
         items{
             id
             name
+            variant
         }
     }
 }

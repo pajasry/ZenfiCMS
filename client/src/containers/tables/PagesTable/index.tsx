@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useMemo } from "react";
 
-import { Pagination, Table, Tag } from "@/components/core";
+import { Pagination, Table } from "@/components/core";
 import { PagesEntity, PagesQuery, PagesQueryVariables } from "@/graphql/schema";
 import { usePagination } from "@/hooks/usePagination";
 import { TableActionType, TableColumnType } from "@/types";
@@ -40,12 +40,7 @@ export const PagesTable = () => {
             {
                 name: "Stav",
                 field: "status",
-                render: ({ status }) => (
-                    <Tag
-                        variant={status.name === "Veřejný" ? "success" : "danger"}
-                        value={status.name}
-                    />
-                ),
+                type: "publicationStatus",
             },
             {
                 name: "Datum vytvoření",
@@ -55,7 +50,7 @@ export const PagesTable = () => {
             {
                 name: "Autor",
                 field: "author",
-                render: ({ author }) => author.username,
+                type: "author",
             },
         ],
         []
@@ -87,6 +82,7 @@ const GET_PAGES = gql`
                 }
                 status {
                     name
+                    variant
                 }
             }
         }

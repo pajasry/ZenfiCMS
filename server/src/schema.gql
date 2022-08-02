@@ -69,6 +69,7 @@ type PublicationStatusOutput {
 type PublicationStatusesEntity {
   id: String!
   name: String!
+  variant: String!
 }
 
 type PublicationStatusesOutput {

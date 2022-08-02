@@ -1,7 +1,8 @@
 import * as _ from "lodash";
 import { useState } from "react";
 
-import { Alert, ContentLoader, DropdownActions, Icon, Text } from "@/components/core";
+import { Alert, ContentLoader, DropdownActions, Icon, Tag, Text } from "@/components/core";
+import { selectSignedUser, useAppSelector } from "@/redux";
 import { TableActionType, TableColumnType } from "@/types";
 
 import * as Styled from "./styled";
@@ -10,6 +11,8 @@ import * as Styled from "./styled";
  * Table component
  */
 export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
+    const { signedUser } = useAppSelector(selectSignedUser);
+
     const [actionsDropdowns, setActionsDropdowns] = useState<boolean[]>([]);
 
     const updateActionDropdown = (index: number, value: boolean) => {
@@ -22,7 +25,17 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
         if (column.render) return column.render(item);
         if (!column.type) return columnValue;
 
-        if (column.type === "date") return new Date(columnValue).toLocaleDateString();
+        if (column.type === "date") {
+            return new Date(columnValue).toLocaleDateString();
+        }
+
+        if (column.type === "publicationStatus") {
+            return <Tag variant={columnValue.variant} value={columnValue.name} />;
+        }
+
+        if (column.type === "author") {
+            return columnValue.username === signedUser?.username ? "Já" : columnValue.username;
+        }
     };
 
     if (isLoading) {

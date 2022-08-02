@@ -4,7 +4,7 @@ export type TableColumnType<T extends object> = {
     name: string;
     field: keyof T;
     grow?: number;
-    type?: "date";
+    type?: "date" | "publicationStatus" | "author";
     render?: (row: T) => JSX.Element | string | number;
 };
 

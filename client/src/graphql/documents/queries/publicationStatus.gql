@@ -3,6 +3,7 @@ query publicationStatus($id: String!){
         item{
             id
             name
+            variant
         }
     }
 }
