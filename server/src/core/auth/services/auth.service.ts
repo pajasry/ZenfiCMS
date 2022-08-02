@@ -2,7 +2,7 @@ import { LoginInput } from "@/auth/resolvers/auth.resolver-input";
 import { LoginOutput } from "@/auth/resolvers/auth.resolver-output";
 import { InvalidDataException } from "@/exceptions/invalidData.exception";
 import { UsersRepository } from "@/users/repositories/users.repository";
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import * as _ from "lodash";
@@ -27,6 +27,8 @@ export class AuthService {
 
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) throw new InvalidDataException();
+
+        if (user.jwtToken.isRevoked) throw new UnauthorizedException();
 
         const generatedToken = this.generateJWTToken(user.id);
         user.jwtToken.value = generatedToken;
