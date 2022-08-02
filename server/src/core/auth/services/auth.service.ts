@@ -1,4 +1,4 @@
-import { LoginInput } from "@/auth/resolvers/auth.resolver-input";
+import { LoginInput, ResetPasswordInput } from "@/auth/resolvers/auth.resolver-input";
 import { LoginOutput } from "@/auth/resolvers/auth.resolver-output";
 import { InvalidDataException } from "@/exceptions/invalidData.exception";
 import { UsersRepository } from "@/users/repositories/users.repository";
@@ -36,4 +36,6 @@ export class AuthService {
         const savedUser = await this.usersRepository.save(user);
         return { token: generatedToken, user: savedUser };
     }
+
+    async resetPassword(resetPasswordInput: ResetPasswordInput): Promise<boolean> {}
 }

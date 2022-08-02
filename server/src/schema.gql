@@ -26,6 +26,7 @@ type LoginOutput {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserOutput!
   login(loginInput: LoginInput!): LoginOutput!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!
 }
 
 type PagesEntity {
@@ -88,6 +89,10 @@ type Query {
   settings: SettingsOutput!
   user(id: String!): UserOutput!
   users: UsersOutput!
+}
+
+input ResetPasswordInput {
+  email: String!
 }
 
 type SettingsEntity {

@@ -8,3 +8,9 @@ export class LoginInput {
     @Field()
     password: string;
 }
+
+@InputType()
+export class ResetPasswordInput {
+    @Field()
+    email: string;
+}
