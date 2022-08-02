@@ -1,5 +1,5 @@
 import { Text } from "@/components/core";
-import { Variant } from "@/types";
+import { VariantType } from "@/types";
 
 import * as Styled from "./styled";
 
@@ -9,12 +9,12 @@ import * as Styled from "./styled";
 export const Alert = ({ variant, value }: AlertProps) => {
     return (
         <Styled.Wrapper variant={variant}>
-            <Text value={value} weight={500} />
+            <Text value={value} weight={600} />
         </Styled.Wrapper>
     );
 };
 
 export interface AlertProps {
-    variant: Variant;
+    variant: VariantType;
     value: string;
 }

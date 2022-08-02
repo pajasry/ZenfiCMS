@@ -1,5 +1,5 @@
 import { Icon, IconName, Text } from "@/components/core";
-import { Variant } from "@/types";
+import { VariantType } from "@/types";
 
 import * as Styled from "./styled";
 
@@ -22,5 +22,5 @@ export interface ButtonProps {
     outline?: boolean;
     isLoading?: boolean;
     type?: "submit" | "button";
-    variant?: Variant;
+    variant?: VariantType;
 }

@@ -5,12 +5,16 @@ import * as StyledIcon from "@/components/core/Icon/styled";
 export const Wrapper = styled.nav`
     display: flex;
     align-items: center;
+    position: relative;
 `;
 
 export const User = styled.div`
     display: flex;
     align-items: center;
     margin-left: auto;
+    margin-top: 10px;
+    position: relative;
+    padding-bottom: 10px;
 
     & ${StyledIcon.Wrapper} {
         width: 10px;

@@ -1,8 +1,8 @@
 import * as _ from "lodash";
 import { useState } from "react";
 
-import { Alert, Icon, Text } from "@/components/core";
-import { Column, RowAction } from "@/types";
+import { Alert, ContentLoader, DropdownActions, Icon, Text } from "@/components/core";
+import { TableActionType, TableColumnType } from "@/types";
 
 import * as Styled from "./styled";
 
@@ -10,13 +10,13 @@ import * as Styled from "./styled";
  * Table component
  */
 export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
-    const [actionsPopups, setActionsPopups] = useState<boolean[]>([]);
+    const [actionsDropdowns, setActionsDropdowns] = useState<boolean[]>([]);
 
-    const updateActionPopup = (index: number, value: boolean) => {
-        setActionsPopups(_.set([...actionsPopups], index, value));
+    const updateActionDropdown = (index: number, value: boolean) => {
+        setActionsDropdowns(_.set([...actionsDropdowns], index, value));
     };
 
-    const renderColumnValue = (column: Column<any>, item: any) => {
+    const renderColumnValue = (column: TableColumnType<any>, item: any) => {
         const columnValue = _.get(item, column.field);
 
         if (column.render) return column.render(item);
@@ -24,6 +24,14 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
 
         if (column.type === "date") return new Date(columnValue).toLocaleDateString();
     };
+
+    if (isLoading) {
+        return (
+            <Styled.Wrapper>
+                <ContentLoader />
+            </Styled.Wrapper>
+        );
+    }
 
     if (!isLoading && _.size(data) === 0) {
         return (
@@ -43,7 +51,7 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
                 ))}
             </Styled.RowHead>
             {_.map(data, (item, i) => (
-                <Styled.Row key={i} active={actionsPopups[i]}>
+                <Styled.Row key={i} active={actionsDropdowns[i]}>
                     {_.map(columns, (column) => (
                         <Styled.Column key={column.name} grow={column.grow || 1}>
                             {renderColumnValue(column, item)}
@@ -51,21 +59,17 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
                     ))}
                     <Styled.RowActions
                         tabIndex={0}
-                        onBlur={() => updateActionPopup(i, false)}
-                        onClick={() => updateActionPopup(i, !actionsPopups[i])}
+                        onBlur={() => updateActionDropdown(i, false)}
+                        onClick={() => updateActionDropdown(i, !actionsDropdowns[i])}
                     >
                         <Icon name="more-dots" />
-                        <Styled.RowActionsPopup visible={actionsPopups[i]}>
-                            {_.map(actions, (action, i) => (
-                                <Styled.RowAction
-                                    key={i}
-                                    variant={action.variant}
-                                    onClick={() => action.onClick(item)}
-                                >
-                                    {action.title}
-                                </Styled.RowAction>
-                            ))}
-                        </Styled.RowActionsPopup>
+                        <DropdownActions
+                            isVisible={actionsDropdowns[i]}
+                            actions={_.map(actions, (a) => ({
+                                ...a,
+                                onClick: () => a.onClick(item),
+                            }))}
+                        />
                     </Styled.RowActions>
                 </Styled.Row>
             ))}
@@ -75,7 +79,7 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
 
 interface TableProps {
     isLoading?: boolean;
-    columns: Column<any>[];
-    actions: RowAction<any>[];
+    columns: TableColumnType<any>[];
+    actions: TableActionType<any>[];
     data: object[];
 }

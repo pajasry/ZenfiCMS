@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { Pagination, Table, Tag } from "@/components/core";
 import { PostsEntity, PostsQuery, PostsQueryVariables } from "@/graphql/schema";
 import { usePagination } from "@/hooks/usePagination";
-import { Column, RowAction } from "@/types";
+import { TableActionType, TableColumnType } from "@/types";
 
 import * as Styled from "./styled";
 
@@ -22,15 +22,15 @@ export const PostsTable = () => {
         onCompleted: (data) => setCount(data.posts.count),
     });
 
-    const actions = useMemo<RowAction<PostsEntity>[]>(
+    const actions = useMemo<TableActionType<PostsEntity>[]>(
         () => [
-            { title: "Upravit", onClick: () => alert("edit") },
-            { title: "Odstranit", variant: "danger", onClick: () => alert("remove") },
+            { value: "Upravit", onClick: () => alert("edit") },
+            { value: "Odstranit", variant: "danger", onClick: () => alert("remove") },
         ],
         []
     );
 
-    const columns = useMemo<Column<PostsEntity>[]>(
+    const columns = useMemo<TableColumnType<PostsEntity>[]>(
         () => [
             {
                 name: "Název",

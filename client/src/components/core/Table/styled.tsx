@@ -2,8 +2,6 @@ import { rgba } from "polished";
 import styled from "styled-components";
 
 import * as StyledIcon from "@/components/core/Icon/styled";
-import { RowAction as RowActionType } from "@/types";
-import { parseColorVariant } from "@/utils";
 
 export const Wrapper = styled.div``;
 
@@ -34,8 +32,6 @@ export const Row = styled.div<RowProps>`
     }
 `;
 
-export const RowStatus = styled.div``;
-
 export const RowActions = styled.button`
     position: absolute;
     right: 15px;
@@ -52,27 +48,6 @@ export const RowActions = styled.button`
     }
 `;
 
-export const RowActionsPopup = styled.div<RowActionsPopupProps>`
-    display: ${(props) => (props.visible ? "block" : "none")};
-    background: #fff;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    border-radius: 4px;
-    box-shadow: 0 2px 10px ${(props) => rgba(props.theme.color.info, 0.1)};
-`;
-
-export const RowAction = styled.div<RowActionProps>`
-    padding: 12px;
-    cursor: pointer;
-    width: 100%;
-    color: ${(props) => parseColorVariant(props)};
-
-    &:hover {
-        background: ${(props) => rgba(parseColorVariant(props), 0.1)};
-    }
-`;
-
 export const Column = styled.div<ColumnProps>`
     flex: ${(props) => props.grow};
     font-weight: 500;
@@ -85,9 +60,3 @@ interface RowProps {
 interface ColumnProps {
     grow: number;
 }
-
-interface RowActionsPopupProps {
-    visible: boolean;
-}
-
-type RowActionProps = Pick<RowActionType<any>, "variant">;
