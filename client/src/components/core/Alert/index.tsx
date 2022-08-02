@@ -9,7 +9,7 @@ import * as Styled from "./styled";
 export const Alert = ({ variant, value }: AlertProps) => {
     return (
         <Styled.Wrapper variant={variant}>
-            <Text value={value} weight={500} />
+            <Text value={value} weight={600} />
         </Styled.Wrapper>
     );
 };

@@ -55,7 +55,7 @@ export const PagesTable = () => {
             {
                 name: "Autor",
                 field: "author",
-                render: ({ author }) => author.firstName || author.email,
+                render: ({ author }) => author.username,
             },
         ],
         []
@@ -83,8 +83,7 @@ const GET_PAGES = gql`
                 name
                 createdAt
                 author {
-                    firstName
-                    email
+                    username
                 }
                 status {
                     name

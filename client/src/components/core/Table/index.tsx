@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import { useState } from "react";
 
-import { Alert, Icon, Text } from "@/components/core";
+import { Alert, ContentLoader, Icon, Text } from "@/components/core";
 import { Column, RowAction } from "@/types";
 
 import * as Styled from "./styled";
@@ -24,6 +24,14 @@ export const Table = ({ isLoading, columns, data, actions }: TableProps) => {
 
         if (column.type === "date") return new Date(columnValue).toLocaleDateString();
     };
+
+    if (isLoading) {
+        return (
+            <Styled.Wrapper>
+                <ContentLoader />
+            </Styled.Wrapper>
+        );
+    }
 
     if (!isLoading && _.size(data) === 0) {
         return (
