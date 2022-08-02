@@ -20,13 +20,9 @@ export class UsersEntity {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Field({ nullable: true })
-    @Column({ nullable: true })
-    firstName?: string;
-
-    @Field({ nullable: true })
-    @Column({ nullable: true })
-    lastName?: string;
+    @Field()
+    @Column()
+    username: string;
 
     @Field()
     @Column({ unique: true })

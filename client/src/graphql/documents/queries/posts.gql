@@ -5,10 +5,9 @@ query posts($skip: Int, $take: Int){
             author{
                 createdAt
                 email
-                firstName
                 id
-                lastName
                 updatedAt
+                username
             }
             createdAt
             description

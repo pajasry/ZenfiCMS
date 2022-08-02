@@ -3,10 +3,9 @@ query me{
         item{
             createdAt
             email
-            firstName
             id
-            lastName
             updatedAt
+            username
         }
     }
 }

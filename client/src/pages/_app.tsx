@@ -76,8 +76,7 @@ const ME = gql`
             item {
                 id
                 email
-                firstName
-                lastName
+                username
             }
         }
     }

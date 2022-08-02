@@ -64,8 +64,7 @@ const LOGIN = gql`
             user {
                 id
                 email
-                lastName
-                firstName
+                username
                 createdAt
                 updatedAt
             }

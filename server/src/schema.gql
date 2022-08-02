@@ -4,9 +4,8 @@
 
 input CreateUserInput {
   email: String!
-  firstName: String
-  lastName: String
   password: String!
+  username: String!
 }
 
 """
@@ -106,10 +105,9 @@ type UserOutput {
 type UsersEntity {
   createdAt: DateTime!
   email: String!
-  firstName: String
   id: String!
-  lastName: String
   updatedAt: DateTime!
+  username: String!
 }
 
 type UsersOutput {

@@ -3,10 +3,9 @@ query user($id: String!){
         item{
             createdAt
             email
-            firstName
             id
-            lastName
             updatedAt
+            username
         }
     }
 }

@@ -4,10 +4,9 @@ query users{
         items{
             createdAt
             email
-            firstName
             id
-            lastName
             updatedAt
+            username
         }
     }
 }

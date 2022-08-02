@@ -23,8 +23,7 @@ export const UsersTable = () => {
         () => [
             {
                 name: "Jméno",
-                field: "firstName",
-                render: (row) => parseName(row),
+                field: "username",
             },
             {
                 name: "Email",
@@ -49,17 +48,12 @@ export const UsersTable = () => {
     );
 };
 
-const parseName = ({ firstName, lastName }: UsersEntity) => {
-    return firstName ? `${firstName} ${lastName}` : "-";
-};
-
 const GET_USERS = gql`
     query GET_USERS {
         users {
             items {
                 email
-                firstName
-                lastName
+                username
                 createdAt
             }
         }

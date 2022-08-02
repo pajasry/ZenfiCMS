@@ -4,10 +4,9 @@ mutation login($loginInput: LoginInput!){
         user{
             createdAt
             email
-            firstName
             id
-            lastName
             updatedAt
+            username
         }
     }
 }
