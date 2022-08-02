@@ -19,7 +19,9 @@ export const LoginForm = () => {
 
     const [loginUser, { loading }] = useMutation<LoginMutation, LoginMutationVariables>(LOGIN, {
         onError: (error) => {
-            toast.error(error.message);
+            toast.error(error.message, {
+                autoClose: false,
+            });
         },
     });
 
