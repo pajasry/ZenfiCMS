@@ -29,6 +29,10 @@ export class PublicationStatusesRepository extends AbstractRepository<Publicatio
         }
     }
 
+    async count(): Promise<number> {
+        return this.repository.count();
+    }
+
     async find(
         searchOptions?: FindManyOptions<PublicationStatusesEntity>
     ): Promise<PublicationStatusesEntity[]> {

@@ -1,6 +1,8 @@
 query settings{
     settings{
-        googleAnalyticsId
-        id
+        item{
+            googleAnalyticsId
+            id
+        }
     }
 }

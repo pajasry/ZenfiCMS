@@ -4,7 +4,7 @@ import { PostsRepository } from "@/posts/repositories/posts.repository";
 import { UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@/auth/guards/auth.guard";
 import { PaginationArgs } from "@/helpers/args";
-import { PostsOutput } from "@/posts/resolvers/posts.resolver-output";
+import { PostOutput, PostsOutput } from "@/posts/resolvers/posts.resolver-output";
 
 @UseGuards(AuthGuard)
 @Resolver(() => PostsEntity)
@@ -19,8 +19,10 @@ export class PostsResolver {
         return { count, items: posts };
     }
 
-    @Query(() => PostsEntity)
-    async post(@Args("id") id: string): Promise<PostsEntity> {
-        return this.postsRepository.findOneById(id);
+    @Query(() => PostOutput)
+    async post(@Args("id") id: string): Promise<PostOutput> {
+        const post = await this.postsRepository.findOneById(id);
+
+        return { item: post };
     }
 }

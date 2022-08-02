@@ -25,7 +25,7 @@ type LoginOutput {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): UsersEntity!
+  createUser(createUserInput: CreateUserInput!): UserOutput!
   login(loginInput: LoginInput!): LoginOutput!
 }
 
@@ -44,6 +44,10 @@ type PagesOutput {
   items: [PagesEntity!]!
 }
 
+type PostOutput {
+  item: PostsEntity!
+}
+
 type PostsEntity {
   author: UsersEntity!
   createdAt: DateTime!
@@ -59,27 +63,44 @@ type PostsOutput {
   items: [PostsEntity!]!
 }
 
+type PublicationStatusOutput {
+  item: PublicationStatusesEntity!
+}
+
 type PublicationStatusesEntity {
   id: String!
   name: String!
 }
 
+type PublicationStatusesOutput {
+  count: Float!
+  items: [PublicationStatusesEntity!]!
+}
+
 type Query {
-  me: UsersEntity!
+  me: UserOutput!
   page(id: String!): PagesEntity!
   pages(skip: Int = 0, take: Int = 25): PagesOutput!
-  post(id: String!): PostsEntity!
+  post(id: String!): PostOutput!
   posts(skip: Int = 0, take: Int = 25): PostsOutput!
-  publicationStatus(id: String!): PublicationStatusesEntity!
-  publicationStatuses: [PublicationStatusesEntity!]!
-  settings: SettingsEntity!
-  user(id: String!): UsersEntity!
+  publicationStatus(id: String!): PublicationStatusOutput!
+  publicationStatuses: PublicationStatusesOutput!
+  settings: SettingsOutput!
+  user(id: String!): UserOutput!
   users: UsersOutput!
 }
 
 type SettingsEntity {
   googleAnalyticsId: String
   id: String!
+}
+
+type SettingsOutput {
+  item: SettingsEntity!
+}
+
+type UserOutput {
+  item: UsersEntity!
 }
 
 type UsersEntity {

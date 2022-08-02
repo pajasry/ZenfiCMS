@@ -1,21 +1,23 @@
 query post($id: String!){
     post(id: $id){
-        author{
+        item{
+            author{
+                createdAt
+                email
+                firstName
+                id
+                lastName
+                updatedAt
+            }
             createdAt
-            email
-            firstName
-            id
-            lastName
-            updatedAt
-        }
-        createdAt
-        description
-        id
-        name
-        status{
+            description
             id
             name
+            status{
+                id
+                name
+            }
+            updatedAt
         }
-        updatedAt
     }
 }
