@@ -1,4 +1,5 @@
 export enum RoutesName {
+    RESET_PASSWORD = "/admin/reset-password",
     LOGIN = "/admin/login",
     HOME = "/admin",
     MEDIA = "/admin/media",

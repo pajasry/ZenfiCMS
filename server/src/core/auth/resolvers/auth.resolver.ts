@@ -1,8 +1,15 @@
 import { UsersEntity } from "@/users/entities/users.entity";
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
-import { LoginInput, ResetPasswordInput } from "@/auth/resolvers/auth.resolver-input";
+import {
+    CreatePasswordInput,
+    LoginInput,
+    ResetPasswordInput,
+} from "@/auth/resolvers/auth.resolver-input";
 import { AuthService } from "@/auth/services/auth.service";
 import { LoginOutput } from "@/auth/resolvers/auth.resolver-output";
+import { UseGuards } from "@nestjs/common";
+import { AuthGuard } from "@/auth/guards/auth.guard";
+import { GetUser } from "@/decorators/getUser.decorator";
 
 @Resolver(() => UsersEntity)
 export class AuthResolver {
@@ -13,6 +20,15 @@ export class AuthResolver {
         @Args("resetPasswordInput") resetPasswordInput: ResetPasswordInput
     ): Promise<boolean> {
         return this.authService.resetPassword(resetPasswordInput);
+    }
+
+    @UseGuards(AuthGuard)
+    @Mutation(() => Boolean)
+    async createPassword(
+        @Args("createPasswordInput") createPasswordInput: CreatePasswordInput,
+        @GetUser() user: UsersEntity
+    ): Promise<boolean> {
+        return this.authService.createPassword(user, createPasswordInput);
     }
 
     @Mutation(() => LoginOutput)

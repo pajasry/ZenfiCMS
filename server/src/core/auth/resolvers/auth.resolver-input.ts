@@ -14,3 +14,9 @@ export class ResetPasswordInput {
     @Field()
     email: string;
 }
+
+@InputType()
+export class CreatePasswordInput {
+    @Field()
+    password: string;
+}

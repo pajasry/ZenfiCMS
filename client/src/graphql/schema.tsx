@@ -13,6 +13,10 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type CreatePasswordInput = {
+  password: Scalars['String'];
+};
+
 export type CreateUserInput = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -32,8 +36,15 @@ export type LoginOutput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createPassword: Scalars['Boolean'];
   createUser: UserOutput;
   login: LoginOutput;
+  resetPassword: Scalars['Boolean'];
+};
+
+
+export type MutationCreatePasswordArgs = {
+  createPasswordInput: CreatePasswordInput;
 };
 
 
@@ -44,6 +55,11 @@ export type MutationCreateUserArgs = {
 
 export type MutationLoginArgs = {
   loginInput: LoginInput;
+};
+
+
+export type MutationResetPasswordArgs = {
+  resetPasswordInput: ResetPasswordInput;
 };
 
 export type PagesEntity = {
@@ -149,6 +165,10 @@ export type QueryUserArgs = {
   id: Scalars['String'];
 };
 
+export type ResetPasswordInput = {
+  email: Scalars['String'];
+};
+
 export type SettingsEntity = {
   __typename?: 'SettingsEntity';
   googleAnalyticsId?: Maybe<Scalars['String']>;
@@ -180,6 +200,13 @@ export type UsersOutput = {
   items: Array<UsersEntity>;
 };
 
+export type CreatePasswordMutationVariables = Exact<{
+  createPasswordInput: CreatePasswordInput;
+}>;
+
+
+export type CreatePasswordMutation = { __typename?: 'Mutation', createPassword: boolean };
+
 export type CreateUserMutationVariables = Exact<{
   createUserInput: CreateUserInput;
 }>;
@@ -193,6 +220,13 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginOutput', token: string, user: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } } };
+
+export type ResetPasswordMutationVariables = Exact<{
+  resetPasswordInput: ResetPasswordInput;
+}>;
+
+
+export type ResetPasswordMutation = { __typename?: 'Mutation', resetPassword: boolean };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 

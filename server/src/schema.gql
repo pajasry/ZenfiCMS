@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePasswordInput {
+  password: String!
+}
+
 input CreateUserInput {
   email: String!
   password: String!
@@ -24,6 +28,7 @@ type LoginOutput {
 }
 
 type Mutation {
+  createPassword(createPasswordInput: CreatePasswordInput!): Boolean!
   createUser(createUserInput: CreateUserInput!): UserOutput!
   login(loginInput: LoginInput!): LoginOutput!
   resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!

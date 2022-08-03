@@ -1,12 +1,14 @@
 import { gql, useMutation } from "@apollo/client";
 import * as _ from "lodash";
+import Link from "next/link";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
-import { Button } from "@/components/core";
+import { Button, Text } from "@/components/core";
 import { Form, FormGroup, FormInput } from "@/components/forms";
 import { LoginInput, LoginMutation, LoginMutationVariables } from "@/graphql/schema";
 import { signInAction, useAppDispatch } from "@/redux";
+import { RoutesName } from "@/types";
 import { setAuthToken } from "@/utils";
 
 import * as Styled from "./styled";
@@ -18,11 +20,7 @@ export const LoginForm = () => {
     const dispatch = useAppDispatch();
 
     const [loginUser, { loading }] = useMutation<LoginMutation, LoginMutationVariables>(LOGIN, {
-        onError: (error) => {
-            toast.error(error.message, {
-                autoClose: false,
-            });
-        },
+        onError: (error) => toast.error(error.message),
     });
 
     const onSubmit = async (loginInput: LoginInput) => {
@@ -48,12 +46,17 @@ export const LoginForm = () => {
                 <FormGroup name="password" title="Heslo">
                     <FormInput name="password" type="password" />
                 </FormGroup>
-                <Button
-                    isLoading={loading}
-                    value="Přihlásit se"
-                    title="Přihlásit se"
-                    type="submit"
-                />
+                <Styled.Actions>
+                    <Link href={RoutesName.RESET_PASSWORD} passHref>
+                        <Text as="a" value="Zapomenuté heslo?" />
+                    </Link>
+                    <Button
+                        isLoading={loading}
+                        value="Přihlásit se"
+                        title="Přihlásit se"
+                        type="submit"
+                    />
+                </Styled.Actions>
             </Form>
         </Styled.Wrapper>
     );

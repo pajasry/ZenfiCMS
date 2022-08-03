@@ -21,13 +21,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         const token = authHeader?.replace("Bearer ", "");
 
         const user = await this.usersRepository.findOneById(payload.userId);
+        if (!user) throw new UnauthorizedException();
 
-        const notAllowedAccess =
-            !user || user?.jwtToken.value !== token || user?.jwtToken.isRevoked;
+        const { jwtToken, passwordToken } = user;
 
-        if (notAllowedAccess) throw new UnauthorizedException();
+        const isValidJwtToken = jwtToken.value === token && !jwtToken.isRevoked;
+        const isValidPassToken = passwordToken?.value === token && !passwordToken?.isRevoked;
 
-        return user;
+        if (isValidJwtToken || isValidPassToken) return user;
+
+        throw new UnauthorizedException();
     }
 }
 

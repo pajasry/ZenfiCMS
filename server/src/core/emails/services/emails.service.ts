@@ -1,38 +1,32 @@
 import { Injectable } from "@nestjs/common";
-import nodemailer from "nodemailer";
 import { UsersEntity } from "@/users/entities/users.entity";
 import {
     CreateMailOptionsServiceDto,
     SendEmailServiceDto,
 } from "@/emails/services/emails.service-dto";
+import { InjectSendGrid, SendGridService } from "@ntegral/nestjs-sendgrid";
+
+//TODO Add errors handling
 
 @Injectable()
 export class EmailsService {
-    private createTransport() {
-        return nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
-            auth: {
-                user: "xxx@xx.com",
-                pass: "xxxx",
-            },
-        });
-    }
+    constructor(
+        @InjectSendGrid()
+        private readonly sendgridService: SendGridService
+    ) {}
 
     private createMailOptions(createMailOptionsServiceDto: CreateMailOptionsServiceDto) {
         return {
             ...createMailOptionsServiceDto,
-            from: "",
+            from: process.env.SENGRID_SENDER,
         };
     }
 
     async sendMail(sendEmailServiceDto: SendEmailServiceDto): Promise<boolean> {
-        const transport = this.createTransport();
         const mailOptions = this.createMailOptions(sendEmailServiceDto);
 
         try {
-            await transport.sendMail(mailOptions);
+            await this.sendgridService.send(mailOptions);
             return true;
         } catch {
             return false;

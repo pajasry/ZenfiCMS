@@ -1,4 +1,8 @@
-import { LoginInput, ResetPasswordInput } from "@/auth/resolvers/auth.resolver-input";
+import {
+    CreatePasswordInput,
+    LoginInput,
+    ResetPasswordInput,
+} from "@/auth/resolvers/auth.resolver-input";
 import { LoginOutput } from "@/auth/resolvers/auth.resolver-output";
 import { InvalidDataException } from "@/exceptions/invalidData.exception";
 import { UsersRepository } from "@/users/repositories/users.repository";
@@ -6,15 +10,25 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import * as _ from "lodash";
+import { EmailsService } from "@/emails/services/emails.service";
+import { UsersEntity } from "@/users/entities/users.entity";
+import { PasswordTokensRepository } from "@/auth/repositories/passwordTokens.repository";
 
 @Injectable()
 export class AuthService {
     constructor(
         private readonly usersRepository: UsersRepository,
-        private readonly jwtService: JwtService
+        private readonly passwordTokensRepository: PasswordTokensRepository,
+        private readonly jwtService: JwtService,
+        private readonly emailsService: EmailsService
     ) {}
 
-    generateJWTToken(userId: string, expiresIn = "3d"): string {
+    async hashPassword(password: string): Promise<string> {
+        const salt = await bcrypt.genSalt();
+        return bcrypt.hash(password, salt);
+    }
+
+    generateJwtToken(userId: string, expiresIn = "3d"): string {
         return this.jwtService.sign({ userId }, { expiresIn });
     }
 
@@ -30,12 +44,47 @@ export class AuthService {
 
         if (user.jwtToken.isRevoked) throw new UnauthorizedException();
 
-        const generatedToken = this.generateJWTToken(user.id);
+        const generatedToken = this.generateJwtToken(user.id);
         user.jwtToken.value = generatedToken;
 
         const savedUser = await this.usersRepository.save(user);
         return { token: generatedToken, user: savedUser };
     }
 
-    async resetPassword(resetPasswordInput: ResetPasswordInput): Promise<boolean> {}
+    async resetPassword(resetPasswordInput: ResetPasswordInput): Promise<boolean> {
+        const { email } = resetPasswordInput;
+        const user = await this.usersRepository.findOneByEmailOrFail(email);
+
+        user.passwordToken = this.passwordTokensRepository.create({
+            value: this.generateJwtToken(user.id),
+            isRevoked: false,
+        });
+
+        try {
+            await this.emailsService.sendResetPasswordMail(user);
+            await this.usersRepository.save(user);
+
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    async createPassword(
+        user: UsersEntity,
+        createPasswordInput: CreatePasswordInput
+    ): Promise<boolean> {
+        const { password } = createPasswordInput;
+
+        user.password = await this.hashPassword(password);
+        user.passwordToken.isRevoked = true;
+
+        try {
+            await this.usersRepository.save(user);
+
+            return true;
+        } catch {
+            return false;
+        }
+    }
 }
