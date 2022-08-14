@@ -4,6 +4,7 @@
 
 input CreatePasswordInput {
   password: String!
+  token: String!
 }
 
 input CreateUserInput {

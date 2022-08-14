@@ -33,7 +33,11 @@ const App = ({ Component, pageProps }: AppProps) => {
     });
 
     const handleRedirects = useCallback(async () => {
-        const authRoutes = [RoutesName.RESET_PASSWORD, RoutesName.LOGIN];
+        const authRoutes = [
+            RoutesName.LOGIN,
+            RoutesName.RESET_PASSWORD,
+            RoutesName.CREATE_PASSWORD,
+        ];
 
         const redirectFromAdmin = !_.includes(authRoutes, router.pathname) && !signedUser;
         const redirectFromLogin = _.includes(authRoutes, router.pathname) && signedUser;

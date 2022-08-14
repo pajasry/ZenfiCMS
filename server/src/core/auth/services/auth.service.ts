@@ -11,7 +11,6 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import * as _ from "lodash";
 import { EmailsService } from "@/emails/services/emails.service";
-import { UsersEntity } from "@/users/entities/users.entity";
 import { PasswordTokensRepository } from "@/auth/repositories/passwordTokens.repository";
 
 @Injectable()
@@ -60,21 +59,24 @@ export class AuthService {
             isRevoked: false,
         });
 
-        try {
-            await this.emailsService.sendResetPasswordMail(user);
-            await this.usersRepository.save(user);
+        await this.emailsService.sendResetPasswordMail(user);
+        await this.usersRepository.save(user);
 
-            return true;
-        } catch {
-            return false;
-        }
+        return true;
     }
 
-    async createPassword(
-        user: UsersEntity,
-        createPasswordInput: CreatePasswordInput
-    ): Promise<boolean> {
-        const { password } = createPasswordInput;
+    async createPassword(createPasswordInput: CreatePasswordInput): Promise<boolean> {
+        const { password, token } = createPasswordInput;
+
+        try {
+            await this.jwtService.verifyAsync(token, { ignoreExpiration: false });
+        } catch {
+            throw new UnauthorizedException();
+        }
+
+        const payload = this.jwtService.decode(token) as { userId: string };
+
+        const user = await this.usersRepository.findOneByIdOrFail(payload?.userId);
 
         user.password = await this.hashPassword(password);
         user.passwordToken.isRevoked = true;

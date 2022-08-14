@@ -10,9 +10,7 @@ import { JwtTokensRepository } from "@/auth/repositories/jwtTokens.repository";
 import { UsersRepository } from "@/users/repositories/users.repository";
 import { EmailsModule } from "@/emails/emails.module";
 import { PasswordTokensRepository } from "@/auth/repositories/passwordTokens.repository";
-
-//TODO: REMOVE THIS LINE
-export const jwtSecret = "Xd523ORx";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 
 @Module({
     imports: [
@@ -21,8 +19,12 @@ export const jwtSecret = "Xd523ORx";
         PassportModule.register({
             defaultStrategy: "jwt",
         }),
-        JwtModule.register({
-            secret: jwtSecret,
+        JwtModule.registerAsync({
+            imports: [ConfigModule],
+            useFactory: async () => ({
+                secret: process.env.JWT_SECRET,
+            }),
+            inject: [ConfigService],
         }),
         EmailsModule,
     ],

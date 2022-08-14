@@ -30,6 +30,16 @@ export const Global = createGlobalStyle`
     color: ${({ theme }) => theme.color.dark};
     font-family: ${({ theme }) => theme.fontFamily.manrope};
   }
+  
+  a {
+    font-weight: 500;
+    text-decoration: none;
+    color: ${({ theme }) => theme.color.dark};
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const Wrapper = styled.div``;

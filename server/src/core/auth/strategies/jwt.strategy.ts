@@ -2,7 +2,6 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { UsersEntity } from "@/users/entities/users.entity";
-import { jwtSecret } from "@/auth/auth.module";
 import { UsersRepository } from "@/users/repositories/users.repository";
 
 @Injectable()
@@ -11,7 +10,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         super({
             ignoreExpiration: false,
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: jwtSecret,
+            secretOrKey: process.env.JWT_SECRET,
             passReqToCallback: true,
         });
     }
@@ -23,12 +22,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         const user = await this.usersRepository.findOneById(payload.userId);
         if (!user) throw new UnauthorizedException();
 
-        const { jwtToken, passwordToken } = user;
+        const { jwtToken } = user;
 
-        const isValidJwtToken = jwtToken.value === token && !jwtToken.isRevoked;
-        const isValidPassToken = passwordToken?.value === token && !passwordToken?.isRevoked;
-
-        if (isValidJwtToken || isValidPassToken) return user;
+        if (jwtToken.value === token && !jwtToken.isRevoked) return user;
 
         throw new UnauthorizedException();
     }

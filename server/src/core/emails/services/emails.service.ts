@@ -1,19 +1,16 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { UsersEntity } from "@/users/entities/users.entity";
 import {
     CreateMailOptionsServiceDto,
     SendEmailServiceDto,
 } from "@/emails/services/emails.service-dto";
-import { InjectSendGrid, SendGridService } from "@ntegral/nestjs-sendgrid";
-
-//TODO Add errors handling
+import * as SendGrid from "@sendgrid/mail";
 
 @Injectable()
 export class EmailsService {
-    constructor(
-        @InjectSendGrid()
-        private readonly sendgridService: SendGridService
-    ) {}
+    constructor() {
+        SendGrid.setApiKey(process.env.SENDGRID_API_KEY);
+    }
 
     private createMailOptions(createMailOptionsServiceDto: CreateMailOptionsServiceDto) {
         return {
@@ -26,10 +23,11 @@ export class EmailsService {
         const mailOptions = this.createMailOptions(sendEmailServiceDto);
 
         try {
-            await this.sendgridService.send(mailOptions);
+            await SendGrid.send(mailOptions);
             return true;
-        } catch {
-            return false;
+        } catch (err) {
+            console.log(err.response.body.errors);
+            throw new UnprocessableEntityException("Sendgrid config error");
         }
     }
 
@@ -39,7 +37,7 @@ export class EmailsService {
 
         const html = `
             <p>Odkaz na vytvoření nového hesla:</p>
-            <a href="${host}/create-password?token=${token}">
+            <a href="${host}/admin/create-password?token=${token}">
                 Vytvoření nového hesla
             </a>
         `;

@@ -1,9 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
-import { Button } from "@/components/core";
+import { Button, Text } from "@/components/core";
 import { Form, FormGroup, FormInput } from "@/components/forms";
 import {
     ResetPasswordInput,
@@ -41,12 +42,18 @@ export const ResetPasswordForm = () => {
                     <FormInput name="email" type="email" />
                 </FormGroup>
 
-                <Button
-                    isLoading={loading}
-                    value="Resetovat heslo"
-                    title="Resetovat heslo"
-                    type="submit"
-                />
+                <Styled.Actions>
+                    <Link href={RoutesName.LOGIN} passHref>
+                        <Text as="a" value="Přejít na přihlášení" />
+                    </Link>
+
+                    <Button
+                        isLoading={loading}
+                        value="Resetovat heslo"
+                        title="Resetovat heslo"
+                        type="submit"
+                    />
+                </Styled.Actions>
             </Form>
         </Styled.Wrapper>
     );

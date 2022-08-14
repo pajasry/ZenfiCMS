@@ -15,6 +15,7 @@ export type Scalars = {
 
 export type CreatePasswordInput = {
   password: Scalars['String'];
+  token: Scalars['String'];
 };
 
 export type CreateUserInput = {

@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
-import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { getMetadataArgsStorage } from "typeorm";
 import { PublicationStatusesModule } from "@/publicationStatuses/publicationStatuses.module";
@@ -17,17 +17,23 @@ const connection = require("../../ormconfig");
 
 @Module({
     imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
         TypeOrmModule.forRoot({
             ...connection,
             keepConnectionAlive: true,
             entities: getMetadataArgsStorage().tables.map((t) => t.target),
         }),
-        GraphQLModule.forRoot<ApolloDriverConfig>({
+        GraphQLModule.forRootAsync<ApolloDriverConfig>({
+            imports: [ConfigModule],
             driver: ApolloDriver,
-            autoSchemaFile: "src/schema.gql",
-            sortSchema: true,
-            playground: false,
-            plugins: [ApolloServerPluginLandingPageLocalDefault()],
+            useFactory: () => ({
+                autoSchemaFile: "src/schema.gql",
+                sortSchema: true,
+                playground: true,
+            }),
+            inject: [ConfigService],
         }),
         PublicationStatusesModule,
         PagesModule,

@@ -18,5 +18,8 @@ export class ResetPasswordInput {
 @InputType()
 export class CreatePasswordInput {
     @Field()
+    token: string;
+
+    @Field()
     password: string;
 }
