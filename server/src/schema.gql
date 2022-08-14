@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePasswordInput {
+  password: String!
+  token: String!
+}
+
 input CreateUserInput {
   email: String!
   password: String!
@@ -24,8 +29,10 @@ type LoginOutput {
 }
 
 type Mutation {
+  createPassword(createPasswordInput: CreatePasswordInput!): Boolean!
   createUser(createUserInput: CreateUserInput!): UserOutput!
   login(loginInput: LoginInput!): LoginOutput!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!
 }
 
 type PagesEntity {
@@ -69,6 +76,7 @@ type PublicationStatusOutput {
 type PublicationStatusesEntity {
   id: String!
   name: String!
+  variant: String!
 }
 
 type PublicationStatusesOutput {
@@ -87,6 +95,10 @@ type Query {
   settings: SettingsOutput!
   user(id: String!): UserOutput!
   users: UsersOutput!
+}
+
+input ResetPasswordInput {
+  email: String!
 }
 
 type SettingsEntity {

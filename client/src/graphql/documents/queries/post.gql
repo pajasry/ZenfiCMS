@@ -15,6 +15,7 @@ query post($id: String!){
             status{
                 id
                 name
+                variant
             }
             updatedAt
         }

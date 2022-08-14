@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useMemo } from "react";
 
-import { Pagination, Table, Tag } from "@/components/core";
+import { Pagination, Table } from "@/components/core";
 import { PostsEntity, PostsQuery, PostsQueryVariables } from "@/graphql/schema";
 import { usePagination } from "@/hooks/usePagination";
 import { TableActionType, TableColumnType } from "@/types";
@@ -40,12 +40,7 @@ export const PostsTable = () => {
             {
                 name: "Stav",
                 field: "status",
-                render: ({ status }) => (
-                    <Tag
-                        variant={status.name === "Veřejný" ? "success" : "danger"}
-                        value={status.name}
-                    />
-                ),
+                type: "publicationStatus",
             },
             {
                 name: "Datum vytvoření",
@@ -55,7 +50,7 @@ export const PostsTable = () => {
             {
                 name: "Autor",
                 field: "author",
-                render: ({ author }) => author.firstName || author.email,
+                type: "author",
             },
         ],
         []
@@ -81,12 +76,12 @@ const GET_POSTS = gql`
             items {
                 name
                 author {
-                    lastName
-                    firstName
+                    username
                     email
                 }
                 status {
                     name
+                    variant
                 }
                 createdAt
             }

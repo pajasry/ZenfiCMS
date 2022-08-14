@@ -4,7 +4,7 @@ import { PagesRepository } from "@/pages/repositories/pages.repository";
 import { UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@/auth/guards/auth.guard";
 import { PaginationArgs } from "@/helpers/args";
-import { PagesOutput } from "@/pages/resolvers/pages.resolver-output";
+import { PageOutput, PagesOutput } from "@/pages/resolvers/pages.resolver-output";
 
 @UseGuards(AuthGuard)
 @Resolver(() => PagesEntity)
@@ -20,7 +20,9 @@ export class PagesResolver {
     }
 
     @Query(() => PagesEntity)
-    async page(@Args("id") id: string): Promise<PagesEntity> {
-        return this.pagesRepository.findOneById(id);
+    async page(@Args("id") id: string): Promise<PageOutput> {
+        const page = await this.pagesRepository.findOneById(id);
+
+        return { item: page };
     }
 }

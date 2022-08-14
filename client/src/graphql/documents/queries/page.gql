@@ -14,6 +14,7 @@ query page($id: String!){
         status{
             id
             name
+            variant
         }
         updatedAt
     }

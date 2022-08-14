@@ -4,7 +4,6 @@ import { UsersRepository } from "@/users/repositories/users.repository";
 import { CreateUserInput } from "@/users/resolvers/users.resolver-input";
 import { JwtTokensRepository } from "@/auth/repositories/jwtTokens.repository";
 import { AuthService } from "@/auth/services/auth.service";
-import * as bcrypt from "bcrypt";
 import * as _ from "lodash";
 
 @Injectable()
@@ -18,10 +17,9 @@ export class UsersService {
 
     async createUser(createUserInput: CreateUserInput): Promise<UsersEntity> {
         const { username, password, email } = createUserInput;
-        const parsedEmail = _.toLower(email);
 
-        const salt = await bcrypt.genSalt();
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const parsedEmail = _.toLower(email);
+        const hashedPassword = await this.authService.hashPassword(password);
 
         const user = this.usersRepository.create({
             username,
@@ -29,9 +27,9 @@ export class UsersService {
             password: hashedPassword,
         });
 
-        const generatedToken = this.authService.generateJWTToken(user.id);
+        const generatedJwtToken = this.authService.generateJwtToken(user.id);
         user.jwtToken = this.jwtTokensRepository.create({
-            value: generatedToken,
+            value: generatedJwtToken,
         });
 
         return this.usersRepository.save(user);

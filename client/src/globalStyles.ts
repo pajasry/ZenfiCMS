@@ -7,6 +7,15 @@ export const Global = createGlobalStyle`
     padding: 0;
   }
   
+  :root{
+    --toastify-color-light: ${(props) => props.theme.color.light};
+    --toastify-color-dark: ${(props) => props.theme.color.dark};
+    --toastify-color-info: ${(props) => props.theme.color.info};
+    --toastify-color-success: ${(props) => props.theme.color.success};
+    --toastify-color-warning: ${(props) => props.theme.color.warning};
+    --toastify-color-error: ${(props) => props.theme.color.danger};
+  }
+  
   body{
     background: ${({ theme }) => theme.color.light}
   }
@@ -20,6 +29,16 @@ export const Global = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     color: ${({ theme }) => theme.color.dark};
     font-family: ${({ theme }) => theme.fontFamily.manrope};
+  }
+  
+  a {
+    font-weight: 500;
+    text-decoration: none;
+    color: ${({ theme }) => theme.color.dark};
+    
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 

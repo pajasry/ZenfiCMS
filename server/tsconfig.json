@@ -20,6 +20,7 @@
             "@/auth/*": ["src/core/auth/*"],
             "@/pages/*": ["src/core/pages/*"],
             "@/posts/*": ["src/core/posts/*"],
+            "@/emails/*": ["src/core/emails/*"],
             "@/settings/*": ["src/core/settings/*"],
             "@/publicationStatuses/*": ["src/core/publicationStatuses/*"],
             "@/users/*": ["src/core/users/*"]

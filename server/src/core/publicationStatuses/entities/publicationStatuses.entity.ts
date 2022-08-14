@@ -11,4 +11,8 @@ export class PublicationStatusesEntity {
     @Field()
     @Column({ unique: true })
     name: string;
+
+    @Field()
+    @Column()
+    variant: string;
 }

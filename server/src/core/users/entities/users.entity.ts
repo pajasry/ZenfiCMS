@@ -12,6 +12,7 @@ import { Field, GraphQLISODateTime, ObjectType } from "@nestjs/graphql";
 import { PostsEntity } from "@/posts/entities/posts.entity";
 import { PagesEntity } from "@/pages/entities/pages.entity";
 import { JwtTokensEntity } from "@/auth/entities/jwtTokens.entity";
+import { PasswordTokensEntity } from "@/auth/entities/passwordTokens.entity";
 
 @ObjectType()
 @Entity("users")
@@ -34,6 +35,10 @@ export class UsersEntity {
     @OneToOne(() => JwtTokensEntity, { cascade: true, eager: true })
     @JoinColumn()
     jwtToken: JwtTokensEntity;
+
+    @OneToOne(() => PasswordTokensEntity, { cascade: true, eager: true, nullable: true })
+    @JoinColumn()
+    passwordToken?: PasswordTokensEntity;
 
     @Field(() => GraphQLISODateTime)
     @CreateDateColumn()

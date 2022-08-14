@@ -1,3 +1,5 @@
+import { getUrlParam } from "@/utils/url";
+
 const key = "_zenfiCMS_auth";
 
 export const getAuthToken = (): string => {
@@ -6,4 +8,8 @@ export const getAuthToken = (): string => {
 
 export const setAuthToken = (token: string | undefined): void => {
     localStorage.setItem(key, token || "");
+};
+
+export const getPasswordToken = (): string | null => {
+    return getUrlParam("token");
 };

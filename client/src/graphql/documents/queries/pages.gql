@@ -16,6 +16,7 @@ query pages($skip: Int, $take: Int){
             status{
                 id
                 name
+                variant
             }
             updatedAt
         }
