@@ -11,7 +11,7 @@ export const Wrapper = styled.div<WrapperProps>`
 export const Body = styled.div``;
 
 export const Label = styled(StyledText.Wrapper)`
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 `;
 
 export const Error = styled(StyledText.Wrapper)`

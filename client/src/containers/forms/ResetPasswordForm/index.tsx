@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 import { Button, Text } from "@/components/core";
-import { Form, FormGroup, FormInput } from "@/components/forms";
+import { Form, FormGroup, FormInput } from "@/components/form";
 import {
     ResetPasswordInput,
     ResetPasswordMutation,
@@ -22,14 +22,22 @@ export const ResetPasswordForm = () => {
         ResetPasswordMutation,
         ResetPasswordMutationVariables
     >(RESET_PASSWORD, {
-        onError: (error) => toast.error(error.message),
-        onCompleted: () => toast.success("Na email obdržíte odkaz na resetování hesla"),
+        onCompleted: () =>
+            toast.success("Na email obdržíte odkaz na resetování hesla"),
     });
 
     const onSubmit = async (resetPasswordInput: ResetPasswordInput) => {
         await resetPassword({ variables: { resetPasswordInput } });
         return router.push(RoutesName.LOGIN);
     };
+
+    const initialValues: ResetPasswordInput = {
+        email: "",
+    };
+
+    const validationSchema = Yup.object().shape({
+        email: Yup.string().email("Neplatný email").required("Povinné pole"),
+    });
 
     return (
         <Styled.Wrapper>
@@ -64,11 +72,3 @@ const RESET_PASSWORD = gql`
         resetPassword(resetPasswordInput: $resetPasswordInput)
     }
 `;
-
-const initialValues: ResetPasswordInput = {
-    email: "",
-};
-
-const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Neplatný email").required("Povinné pole"),
-});

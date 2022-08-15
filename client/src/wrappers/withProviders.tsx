@@ -1,5 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "styled-components";
 
 import { client } from "@/graphql/client";
@@ -18,6 +19,7 @@ export const withProviders = (Component: (props: any) => JSX.Element) =>
                         <Component {...props} />
                     </ThemeProvider>
                 </ApolloProvider>
+                <ToastContainer />
             </Provider>
         );
     };

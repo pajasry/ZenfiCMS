@@ -8,7 +8,7 @@ import { ButtonProps } from "./";
 
 export const Wrapper = styled.button<StyledButtonProps>`
     color: #fff;
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
     border-color: transparent;
     justify-content: center;
@@ -19,7 +19,6 @@ export const Wrapper = styled.button<StyledButtonProps>`
     cursor: pointer;
     align-items: center;
     background: ${(props) => parseColorVariant(props)};
-    outline: 2px solid ${(props) => rgba(parseColorVariant(props), 0.1)};
 
     ${(props) =>
         props.outline &&
@@ -30,11 +29,11 @@ export const Wrapper = styled.button<StyledButtonProps>`
         `}
 
     &:hover {
-        box-shadow: 0 2px 10px ${(props) => rgba(parseColorVariant(props), 0.3)};
+        box-shadow: 0 2px 10px ${(props) => rgba(parseColorVariant(props), 0.2)};
     }
 
     &:active {
-        transform: scale(0.95);
+        transform: scale(0.98);
     }
 
     & ${StyledIcon.Wrapper} {

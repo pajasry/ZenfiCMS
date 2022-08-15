@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 import { Button, Text } from "@/components/core";
-import { Form, FormGroup, FormInput } from "@/components/forms";
+import { Form, FormGroup, FormInput } from "@/components/form";
 import {
     CreatePasswordInput,
     CreatePasswordMutation,
@@ -23,7 +23,6 @@ export const CreatePasswordForm = () => {
         CreatePasswordMutation,
         CreatePasswordMutationVariables
     >(CREATE_PASSWORD, {
-        onError: (error) => toast.error(error.message),
         onCompleted: () => toast.success("Heslo bylo úspěšně změněno"),
     });
 
@@ -37,10 +36,23 @@ export const CreatePasswordForm = () => {
         const passwordToken = getPasswordToken() || "";
 
         await createPassword({
-            variables: { createPasswordInput: { password, token: passwordToken } },
+            variables: {
+                createPasswordInput: { password, token: passwordToken },
+            },
         });
+
         return router.push(RoutesName.LOGIN);
     };
+
+    const initialValues: CreatePasswordInput = {
+        password: "",
+        token: "",
+    };
+
+    const validationSchema = Yup.object().shape({
+        password: Yup.string().required("Povinné pole"),
+        rePassword: Yup.string().required("Povinné pole"),
+    });
 
     return (
         <Styled.Wrapper>
@@ -83,13 +95,3 @@ const CREATE_PASSWORD = gql`
 interface CustomInput extends CreatePasswordInput {
     rePassword: string;
 }
-
-const initialValues: CreatePasswordInput = {
-    password: "",
-    token: "",
-};
-
-const validationSchema = Yup.object().shape({
-    password: Yup.string().required("Povinné pole"),
-    rePassword: Yup.string().required("Povinné pole"),
-});

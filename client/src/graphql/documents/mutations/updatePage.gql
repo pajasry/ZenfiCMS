@@ -1,0 +1,23 @@
+mutation updatePage($id: String!, $updatePageInput: UpdatePageInput!){
+    updatePage(id: $id, updatePageInput: $updatePageInput){
+        item{
+            author{
+                createdAt
+                email
+                id
+                updatedAt
+                username
+            }
+            createdAt
+            description
+            id
+            name
+            status{
+                id
+                name
+                variant
+            }
+            updatedAt
+        }
+    }
+}

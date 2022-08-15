@@ -13,6 +13,12 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type CreatePageInput = {
+  description: Scalars['String'];
+  name: Scalars['String'];
+  statusId?: InputMaybe<Scalars['String']>;
+};
+
 export type CreatePasswordInput = {
   password: Scalars['String'];
   token: Scalars['String'];
@@ -37,10 +43,18 @@ export type LoginOutput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createPage: PageOutput;
   createPassword: Scalars['Boolean'];
   createUser: UserOutput;
+  deletePage: Scalars['Boolean'];
   login: LoginOutput;
   resetPassword: Scalars['Boolean'];
+  updatePage: PageOutput;
+};
+
+
+export type MutationCreatePageArgs = {
+  createPageInput: CreatePageInput;
 };
 
 
@@ -54,6 +68,11 @@ export type MutationCreateUserArgs = {
 };
 
 
+export type MutationDeletePageArgs = {
+  id: Scalars['String'];
+};
+
+
 export type MutationLoginArgs = {
   loginInput: LoginInput;
 };
@@ -61,6 +80,17 @@ export type MutationLoginArgs = {
 
 export type MutationResetPasswordArgs = {
   resetPasswordInput: ResetPasswordInput;
+};
+
+
+export type MutationUpdatePageArgs = {
+  id: Scalars['String'];
+  updatePageInput: UpdatePageInput;
+};
+
+export type PageOutput = {
+  __typename?: 'PageOutput';
+  item?: Maybe<PagesEntity>;
 };
 
 export type PagesEntity = {
@@ -82,7 +112,7 @@ export type PagesOutput = {
 
 export type PostOutput = {
   __typename?: 'PostOutput';
-  item: PostsEntity;
+  item?: Maybe<PostsEntity>;
 };
 
 export type PostsEntity = {
@@ -104,7 +134,7 @@ export type PostsOutput = {
 
 export type PublicationStatusOutput = {
   __typename?: 'PublicationStatusOutput';
-  item: PublicationStatusesEntity;
+  item?: Maybe<PublicationStatusesEntity>;
 };
 
 export type PublicationStatusesEntity = {
@@ -123,7 +153,7 @@ export type PublicationStatusesOutput = {
 export type Query = {
   __typename?: 'Query';
   me: UserOutput;
-  page: PagesEntity;
+  page: PageOutput;
   pages: PagesOutput;
   post: PostOutput;
   posts: PostsOutput;
@@ -178,12 +208,18 @@ export type SettingsEntity = {
 
 export type SettingsOutput = {
   __typename?: 'SettingsOutput';
-  item: SettingsEntity;
+  item?: Maybe<SettingsEntity>;
+};
+
+export type UpdatePageInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  statusId?: InputMaybe<Scalars['String']>;
 };
 
 export type UserOutput = {
   __typename?: 'UserOutput';
-  item: UsersEntity;
+  item?: Maybe<UsersEntity>;
 };
 
 export type UsersEntity = {
@@ -201,6 +237,13 @@ export type UsersOutput = {
   items: Array<UsersEntity>;
 };
 
+export type CreatePageMutationVariables = Exact<{
+  createPageInput: CreatePageInput;
+}>;
+
+
+export type CreatePageMutation = { __typename?: 'Mutation', createPage: { __typename?: 'PageOutput', item?: { __typename?: 'PagesEntity', createdAt: any, description: string, id: string, name: string, updatedAt: any, author: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string }, status: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } | null } };
+
 export type CreatePasswordMutationVariables = Exact<{
   createPasswordInput: CreatePasswordInput;
 }>;
@@ -213,7 +256,14 @@ export type CreateUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'UserOutput', item: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } } };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'UserOutput', item?: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } | null } };
+
+export type DeletePageMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DeletePageMutation = { __typename?: 'Mutation', deletePage: boolean };
 
 export type LoginMutationVariables = Exact<{
   loginInput: LoginInput;
@@ -229,17 +279,25 @@ export type ResetPasswordMutationVariables = Exact<{
 
 export type ResetPasswordMutation = { __typename?: 'Mutation', resetPassword: boolean };
 
+export type UpdatePageMutationVariables = Exact<{
+  id: Scalars['String'];
+  updatePageInput: UpdatePageInput;
+}>;
+
+
+export type UpdatePageMutation = { __typename?: 'Mutation', updatePage: { __typename?: 'PageOutput', item?: { __typename?: 'PagesEntity', createdAt: any, description: string, id: string, name: string, updatedAt: any, author: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string }, status: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } | null } };
+
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me: { __typename?: 'UserOutput', item: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } } };
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'UserOutput', item?: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } | null } };
 
 export type PageQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type PageQuery = { __typename?: 'Query', page: { __typename?: 'PagesEntity', createdAt: any, description: string, id: string, name: string, updatedAt: any, author: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string }, status: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } };
+export type PageQuery = { __typename?: 'Query', page: { __typename?: 'PageOutput', item?: { __typename?: 'PagesEntity', createdAt: any, description: string, id: string, name: string, updatedAt: any, author: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string }, status: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } | null } };
 
 export type PagesQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']>;
@@ -254,7 +312,7 @@ export type PostQueryVariables = Exact<{
 }>;
 
 
-export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostOutput', item: { __typename?: 'PostsEntity', createdAt: any, description: string, id: string, name: string, updatedAt: any, author: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string }, status: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } } };
+export type PostQuery = { __typename?: 'Query', post: { __typename?: 'PostOutput', item?: { __typename?: 'PostsEntity', createdAt: any, description: string, id: string, name: string, updatedAt: any, author: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string }, status: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } | null } };
 
 export type PostsQueryVariables = Exact<{
   skip?: InputMaybe<Scalars['Int']>;
@@ -269,7 +327,7 @@ export type PublicationStatusQueryVariables = Exact<{
 }>;
 
 
-export type PublicationStatusQuery = { __typename?: 'Query', publicationStatus: { __typename?: 'PublicationStatusOutput', item: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } } };
+export type PublicationStatusQuery = { __typename?: 'Query', publicationStatus: { __typename?: 'PublicationStatusOutput', item?: { __typename?: 'PublicationStatusesEntity', id: string, name: string, variant: string } | null } };
 
 export type PublicationStatusesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -279,14 +337,14 @@ export type PublicationStatusesQuery = { __typename?: 'Query', publicationStatus
 export type SettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SettingsQuery = { __typename?: 'Query', settings: { __typename?: 'SettingsOutput', item: { __typename?: 'SettingsEntity', googleAnalyticsId?: string | null, id: string } } };
+export type SettingsQuery = { __typename?: 'Query', settings: { __typename?: 'SettingsOutput', item?: { __typename?: 'SettingsEntity', googleAnalyticsId?: string | null, id: string } | null } };
 
 export type UserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type UserQuery = { __typename?: 'Query', user: { __typename?: 'UserOutput', item: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } } };
+export type UserQuery = { __typename?: 'Query', user: { __typename?: 'UserOutput', item?: { __typename?: 'UsersEntity', createdAt: any, email: string, id: string, updatedAt: any, username: string } | null } };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 

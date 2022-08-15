@@ -7,11 +7,13 @@ export const Wrapper = styled.div``;
 
 export const RowHead = styled.div`
     display: flex;
+    align-items: center;
     padding: 0 12px 12px;
 `;
 
 export const Row = styled.div<RowProps>`
     display: flex;
+    align-items: center;
     padding: 20px 12px;
     background: #fff;
     position: relative;

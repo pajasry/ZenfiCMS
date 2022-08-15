@@ -1,7 +1,15 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 
-import { DropdownActions, DropdownActionType, Icon, Text } from "@/components/core";
+import {
+    Button,
+    DropdownActions,
+    DropdownActionType,
+    Icon,
+    Text,
+} from "@/components/core";
 import { selectSignedUser, useAppSelector } from "@/redux";
+import { RoutesName } from "@/types";
 import { setAuthToken } from "@/utils";
 
 import * as Styled from "./styled";
@@ -10,6 +18,8 @@ import * as Styled from "./styled";
  * Navigation component
  */
 export const Navigation = () => {
+    const router = useRouter();
+
     const [dropdown, setDropdown] = useState(false);
 
     const { signedUser } = useAppSelector(selectSignedUser);
@@ -20,6 +30,10 @@ export const Navigation = () => {
     const logout = () => {
         setAuthToken("");
         window.location.reload();
+    };
+
+    const showFront = () => {
+        return router.push(RoutesName.FRONT);
     };
 
     const actions: DropdownActionType[] = [
@@ -39,7 +53,18 @@ export const Navigation = () => {
 
     return (
         <Styled.Wrapper>
-            <Styled.User onMouseEnter={showDropdown} onMouseLeave={hideDropdown}>
+            <Button
+                outline
+                icon="eye"
+                onClick={showFront}
+                title="Přejít na web"
+                value="Přejít na web"
+                variant="secondary"
+            />
+            <Styled.User
+                onMouseEnter={showDropdown}
+                onMouseLeave={hideDropdown}
+            >
                 <Styled.UserImage>
                     <img src="/assets/images/placeholder.svg" alt="" />
                 </Styled.UserImage>

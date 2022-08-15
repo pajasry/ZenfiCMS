@@ -1,0 +1,23 @@
+mutation createPage($createPageInput: CreatePageInput!){
+    createPage(createPageInput: $createPageInput){
+        item{
+            author{
+                createdAt
+                email
+                id
+                updatedAt
+                username
+            }
+            createdAt
+            description
+            id
+            name
+            status{
+                id
+                name
+                variant
+            }
+            updatedAt
+        }
+    }
+}

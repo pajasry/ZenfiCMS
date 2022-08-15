@@ -1,21 +1,23 @@
 query page($id: String!){
     page(id: $id){
-        author{
+        item{
+            author{
+                createdAt
+                email
+                id
+                updatedAt
+                username
+            }
             createdAt
-            email
-            id
-            updatedAt
-            username
-        }
-        createdAt
-        description
-        id
-        name
-        status{
+            description
             id
             name
-            variant
+            status{
+                id
+                name
+                variant
+            }
+            updatedAt
         }
-        updatedAt
     }
 }

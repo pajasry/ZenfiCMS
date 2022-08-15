@@ -43,5 +43,6 @@ export type IconName =
     | "sticky-note"
     | "tablet"
     | "undo"
+    | "edit"
     | "user-circle"
     | "users";

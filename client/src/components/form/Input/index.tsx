@@ -6,10 +6,10 @@ import * as Styled from "./styled";
 /**
  * Input component
  */
-export const Input = (props: InputProps) => {
+export const Input = ({ textarea, ...props }: InputProps) => {
     return (
         <Styled.Wrapper>
-            <Styled.Field {...props} />
+            <Styled.Field as={textarea ? "textarea" : "input"} {...props} />
         </Styled.Wrapper>
     );
 };
@@ -27,6 +27,7 @@ interface InputProps {
     name: string;
     value: string;
     placeholder?: string;
+    textarea?: boolean;
     type?: HTMLInputTypeAttribute;
     onChange: (e: ChangeEvent<any>) => void;
 }

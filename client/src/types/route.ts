@@ -1,4 +1,5 @@
 export enum RoutesName {
+    FRONT = "/",
     RESET_PASSWORD = "/admin/reset-password",
     CREATE_PASSWORD = "/admin/create-password",
     LOGIN = "/admin/login",
@@ -6,6 +7,8 @@ export enum RoutesName {
     MEDIA = "/admin/media",
     POSTS = "/admin/posts",
     PAGES = "/admin/pages",
+    PAGE = "/admin/pages/:pageId",
+    CREATE_PAGE = "/admin/pages/create",
     APPEARANCE = "/admin/appearance",
     USERS = "/admin/users",
     SETTINGS = "/admin/settings",
