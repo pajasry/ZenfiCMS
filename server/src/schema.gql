@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePageInput {
+  description: String!
+  name: String!
+  statusId: String
+}
+
 input CreatePasswordInput {
   password: String!
   token: String!
@@ -29,10 +35,17 @@ type LoginOutput {
 }
 
 type Mutation {
+  createPage(createPageInput: CreatePageInput!): PageOutput!
   createPassword(createPasswordInput: CreatePasswordInput!): Boolean!
   createUser(createUserInput: CreateUserInput!): UserOutput!
+  deletePage(id: String!): Boolean!
   login(loginInput: LoginInput!): LoginOutput!
   resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!
+  updatePage(id: String!, updatePageInput: UpdatePageInput!): PageOutput!
+}
+
+type PageOutput {
+  item: PagesEntity
 }
 
 type PagesEntity {
@@ -41,6 +54,7 @@ type PagesEntity {
   description: String!
   id: String!
   name: String!
+  path: String!
   status: PublicationStatusesEntity!
   updatedAt: DateTime!
 }
@@ -51,7 +65,7 @@ type PagesOutput {
 }
 
 type PostOutput {
-  item: PostsEntity!
+  item: PostsEntity
 }
 
 type PostsEntity {
@@ -70,7 +84,7 @@ type PostsOutput {
 }
 
 type PublicationStatusOutput {
-  item: PublicationStatusesEntity!
+  item: PublicationStatusesEntity
 }
 
 type PublicationStatusesEntity {
@@ -85,8 +99,9 @@ type PublicationStatusesOutput {
 }
 
 type Query {
+  createPage(createPageInput: CreatePageInput!): PageOutput!
   me: UserOutput!
-  page(id: String!): PagesEntity!
+  page(id: String, path: String): PageOutput!
   pages(skip: Int = 0, take: Int = 25): PagesOutput!
   post(id: String!): PostOutput!
   posts(skip: Int = 0, take: Int = 25): PostsOutput!
@@ -107,11 +122,17 @@ type SettingsEntity {
 }
 
 type SettingsOutput {
-  item: SettingsEntity!
+  item: SettingsEntity
+}
+
+input UpdatePageInput {
+  description: String
+  name: String
+  statusId: String
 }
 
 type UserOutput {
-  item: UsersEntity!
+  item: UsersEntity
 }
 
 type UsersEntity {

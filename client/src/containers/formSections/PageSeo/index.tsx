@@ -2,7 +2,7 @@ import { useFormikContext } from "formik";
 
 import { Alert } from "@/components/core";
 import { CreatePageInput } from "@/graphql/schema";
-import { normalizeValueForUrl } from "@/utils";
+import { createPath } from "@/utils";
 
 import * as Styled from "./styled";
 
@@ -14,7 +14,7 @@ export const PageSeo = () => {
     const { description, name } = values;
 
     const createPagePath = (name: string) => {
-        return `${window.location.origin}/${normalizeValueForUrl(name)}`;
+        return `${window.location.origin}/${createPath(name)}`;
     };
 
     if (!Boolean(description && name)) {

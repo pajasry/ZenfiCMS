@@ -6,8 +6,8 @@ import {
     SelectQueryBuilder,
 } from "typeorm";
 import { BadRequestException, NotFoundException } from "@nestjs/common";
-import { CreatePostRepositoryDto } from "@/posts/repositories/posts.repository-dto";
 import { PagesEntity } from "@/pages/entities/pages.entity";
+import { CreatePagesRepositoryDto } from "@/pages/repositories/pages.repository-dto";
 
 @EntityRepository(PagesEntity)
 export class PagesRepository extends AbstractRepository<PagesEntity> {
@@ -15,8 +15,12 @@ export class PagesRepository extends AbstractRepository<PagesEntity> {
         return this.repository.createQueryBuilder("pages");
     }
 
-    create(createPostRepositoryDto: Partial<CreatePostRepositoryDto>): PagesEntity {
+    create(createPostRepositoryDto: Partial<CreatePagesRepositoryDto>): PagesEntity {
         return this.repository.create(createPostRepositoryDto);
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.repository.delete(id);
     }
 
     async save(user: PagesEntity): Promise<PagesEntity> {

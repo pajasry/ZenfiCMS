@@ -81,12 +81,8 @@ export class AuthService {
         user.password = await this.hashPassword(password);
         user.passwordToken.isRevoked = true;
 
-        try {
-            await this.usersRepository.save(user);
+        await this.usersRepository.save(user);
 
-            return true;
-        } catch {
-            return false;
-        }
+        return true;
     }
 }

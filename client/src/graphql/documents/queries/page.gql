@@ -1,5 +1,5 @@
-query page($id: String!){
-    page(id: $id){
+query page($id: String, $path: String){
+    page(id: $id, path: $path){
         item{
             author{
                 createdAt
@@ -12,6 +12,7 @@ query page($id: String!){
             description
             id
             name
+            path
             status{
                 id
                 name

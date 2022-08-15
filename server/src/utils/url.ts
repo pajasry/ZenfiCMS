@@ -1,10 +1,5 @@
 import * as _ from "lodash";
 
-export const getUrlParam = (param: string): string | null => {
-    const queryString = window.location.search;
-    return new URLSearchParams(queryString).get(param);
-};
-
 export const createPath = (value: string) => {
     const normalized = value.normalize("NFD");
 

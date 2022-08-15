@@ -13,6 +13,7 @@ query pages($skip: Int, $take: Int){
             description
             id
             name
+            path
             status{
                 id
                 name

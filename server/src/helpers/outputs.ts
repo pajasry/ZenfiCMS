@@ -17,8 +17,8 @@ export const ItemsOutput = <I>(ItemType: Type<I>) => {
 export const ItemOutput = <I>(ItemType: Type<I>) => {
     @ObjectType({ isAbstract: true })
     abstract class Output<I> {
-        @Field(() => ItemType)
-        item: I;
+        @Field(() => ItemType, { nullable: true })
+        item?: I;
     }
 
     return Output;

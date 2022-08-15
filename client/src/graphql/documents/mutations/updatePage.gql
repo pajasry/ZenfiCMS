@@ -12,6 +12,7 @@ mutation updatePage($id: String!, $updatePageInput: UpdatePageInput!){
             description
             id
             name
+            path
             status{
                 id
                 name

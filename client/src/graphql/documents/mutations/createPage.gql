@@ -12,6 +12,7 @@ mutation createPage($createPageInput: CreatePageInput!){
             description
             id
             name
+            path
             status{
                 id
                 name

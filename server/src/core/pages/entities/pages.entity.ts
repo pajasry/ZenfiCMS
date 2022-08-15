@@ -18,8 +18,12 @@ export class PagesEntity {
     id: string;
 
     @Field()
-    @Column()
+    @Column({ unique: true })
     name: string;
+
+    @Field()
+    @Column()
+    path: string;
 
     @Field()
     @Column()
