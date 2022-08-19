@@ -8,18 +8,17 @@ import { ButtonProps } from "./";
 
 export const Wrapper = styled.button<StyledButtonProps>`
     color: #fff;
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
     border-color: transparent;
     justify-content: center;
     height: 40px;
     padding: 12px 20px;
     border-radius: 4px;
-    display: flex;
     cursor: pointer;
     align-items: center;
     background: ${(props) => parseColorVariant(props)};
-    outline: 2px solid ${(props) => rgba(parseColorVariant(props), 0.1)};
+    display: ${(props) => (props.isHidden ? "none" : "flex")};
 
     ${(props) =>
         props.outline &&
@@ -30,11 +29,21 @@ export const Wrapper = styled.button<StyledButtonProps>`
         `}
 
     &:hover {
-        box-shadow: 0 2px 10px ${(props) => rgba(parseColorVariant(props), 0.3)};
+        box-shadow: 0 2px 15px ${(props) => rgba(parseColorVariant(props), 0.3)};
     }
 
     &:active {
-        transform: scale(0.95);
+        transform: scale(0.98);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+    &:disabled:active {
+        transform: none;
     }
 
     & ${StyledIcon.Wrapper} {
@@ -46,4 +55,7 @@ export const Wrapper = styled.button<StyledButtonProps>`
     }
 `;
 
-type StyledButtonProps = Pick<ButtonProps, "variant" | "value" | "outline">;
+type StyledButtonProps = Pick<
+    ButtonProps,
+    "variant" | "value" | "outline" | "isHidden"
+>;

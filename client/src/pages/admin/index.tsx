@@ -1,10 +1,10 @@
-import { Template } from "@/components/layout";
+import { AdminTemplate } from "@/components/layout/templates";
 
 /**
  * Home page
  */
 const Home = () => {
-    return <Template title="Přehled">Home</Template>;
+    return <AdminTemplate title="Přehled">Home</AdminTemplate>;
 };
 
 export default Home;

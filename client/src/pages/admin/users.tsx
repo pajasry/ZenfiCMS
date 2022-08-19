@@ -1,19 +1,27 @@
-import { Button, Text } from "@/components/core";
-import { Template, ViewHead } from "@/components/layout";
-import { UsersTable } from "@/containers/tables";
+import { ButtonProps } from "@/components/core";
+import {
+    AdminTemplate,
+    AdminTemplateHeader,
+} from "@/components/layout/templates";
+import { UsersTable } from "@/components/table/containers";
 
 /**
  * Users page
  */
 const Users = () => {
+    const actions: ButtonProps[] = [
+        {
+            icon: "add",
+            value: "Přidat uživatele",
+            onClick: () => null,
+        },
+    ];
+
     return (
-        <Template title="Uživatelé">
-            <ViewHead>
-                <Text value="Uživatelé" as="h1" size="headline" weight={700} />
-                <Button icon="add" value="Přidat uživatele" title="Přidat uživatele" />
-            </ViewHead>
+        <AdminTemplate title="Uživatelé">
+            <AdminTemplateHeader title="Uživatelé" actions={actions} />
             <UsersTable />
-        </Template>
+        </AdminTemplate>
     );
 };
 

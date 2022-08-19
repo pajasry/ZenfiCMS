@@ -1,10 +1,10 @@
-import { Template } from "@/components/layout";
+import { AdminTemplate } from "@/components/layout/templates";
 
 /**
  * Settings page
  */
 const Settings = () => {
-    return <Template title="Nastavení">SettingsView</Template>;
+    return <AdminTemplate title="Nastavení">SettingsView</AdminTemplate>;
 };
 
 export default Settings;

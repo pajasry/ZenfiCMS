@@ -1,0 +1,14 @@
+query clientPage($path: String!){
+    clientPage(path: $path){
+        item{
+            description
+            name
+            path
+            status{
+                id
+                name
+                variant
+            }
+        }
+    }
+}

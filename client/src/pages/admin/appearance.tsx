@@ -1,10 +1,10 @@
-import { Template } from "@/components/layout";
+import { AdminTemplate } from "@/components/layout/templates";
 
 /**
  * Appearance page
  */
 const Appearance = () => {
-    return <Template title="Vzhled">AppearanceView</Template>;
+    return <AdminTemplate title="Vzhled">AppearanceView</AdminTemplate>;
 };
 
 export default Appearance;

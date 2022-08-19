@@ -13,17 +13,17 @@
         "incremental": true,
         "skipLibCheck": true,
         "paths": {
-            "@/helpers/*": ["src/helpers/*"],
-            "@/decorators/*": ["src/decorators/*"],
-            "@/exceptions/*": ["src/exceptions/*"],
-            "@/interceptors/*": ["src/interceptors/*"],
+            "@/utils": ["src/utils"],
+            "@/helpers": ["src/helpers"],
+            "@/decorators": ["src/decorators"],
+            "@/exceptions": ["src/exceptions"],
+
             "@/auth/*": ["src/core/auth/*"],
-            "@/pages/*": ["src/core/pages/*"],
-            "@/posts/*": ["src/core/posts/*"],
-            "@/emails/*": ["src/core/emails/*"],
-            "@/settings/*": ["src/core/settings/*"],
-            "@/publicationStatuses/*": ["src/core/publicationStatuses/*"],
-            "@/users/*": ["src/core/users/*"]
+            "@/page/*": ["src/core/page/*"],
+            "@/email/*": ["src/core/email/*"],
+            "@/user/*": ["src/core/user/*"],
+            "@/prisma/*": ["src/core/prisma/*"],
+            "@/upload/*": ["src/core/upload/*"]
         }
     }
 }

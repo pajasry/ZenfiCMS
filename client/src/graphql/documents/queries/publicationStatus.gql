@@ -1,9 +1,0 @@
-query publicationStatus($id: String!){
-    publicationStatus(id: $id){
-        item{
-            id
-            name
-            variant
-        }
-    }
-}

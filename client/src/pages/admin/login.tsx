@@ -1,5 +1,5 @@
-import { AuthTemplate } from "@/components/layout";
-import { LoginForm } from "@/containers/forms";
+import { LoginForm } from "@/components/form/containers";
+import { AuthTemplate } from "@/components/layout/templates";
 
 /**
  * Login page

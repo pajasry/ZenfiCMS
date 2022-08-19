@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { UsersEntity } from "@/graphql/schema";
+import { UserEntity } from "@/graphql/schema";
 import { AppState } from "@/redux/store";
 
 interface State {
-    signedUser: UsersEntity | null;
+    signedUser: UserEntity | null;
 }
 
 const initialState: State = {
@@ -15,7 +15,7 @@ const signedUserSlice = createSlice({
     name: "signedUser",
     initialState,
     reducers: {
-        signInAction: (state, action: PayloadAction<UsersEntity>) => {
+        signInAction: (state, action: PayloadAction<UserEntity>) => {
             state.signedUser = action.payload;
         },
     },

@@ -20,7 +20,7 @@ export const Global = createGlobalStyle`
     background: ${({ theme }) => theme.color.light}
   }
   
-  button, input, body {
+  button, input, body, textarea {
     font-family: ${({ theme }) => theme.fontFamily.manrope};
     font-size: 14px;
     font-weight: 400;
@@ -33,12 +33,9 @@ export const Global = createGlobalStyle`
   
   a {
     font-weight: 500;
-    text-decoration: none;
     color: ${({ theme }) => theme.color.dark};
-    
-    &:hover {
-      text-decoration: underline;
-    }
+    cursor: pointer;
+    text-decoration: underline;
   }
 `;
 

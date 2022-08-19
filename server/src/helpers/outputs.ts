@@ -1,25 +1,34 @@
-import { Field, ObjectType } from "@nestjs/graphql";
 import { Type } from "@nestjs/common";
+import { Field, ObjectType } from "@nestjs/graphql";
 
-export const ItemsOutput = <I>(ItemType: Type<I>) => {
+interface ItemsOutputType<I> {
+    items: I[];
+    count: number;
+}
+
+interface ItemOutputType<I> {
+    item?: I;
+}
+
+export const ItemsOutput = <I>(classRef: Type<I>): Type<ItemsOutputType<I>> => {
     @ObjectType({ isAbstract: true })
-    abstract class Output<I> {
-        @Field(() => [ItemType])
+    abstract class Output implements ItemsOutputType<I> {
+        @Field(() => [classRef])
         items: I[];
 
         @Field()
         count: number;
     }
 
-    return Output;
+    return Output as Type<ItemsOutputType<I>>;
 };
 
-export const ItemOutput = <I>(ItemType: Type<I>) => {
+export const ItemOutput = <I>(classRef: Type<I>): Type<ItemOutputType<I>> => {
     @ObjectType({ isAbstract: true })
-    abstract class Output<I> {
-        @Field(() => ItemType)
-        item: I;
+    abstract class Output implements ItemOutputType<I> {
+        @Field(() => classRef, { nullable: true })
+        item?: I;
     }
 
-    return Output;
+    return Output as Type<ItemOutputType<I>>;
 };

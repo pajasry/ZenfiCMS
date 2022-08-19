@@ -1,0 +1,3 @@
+mutation setHomepage($id: String!){
+    setHomepage(id: $id)
+}

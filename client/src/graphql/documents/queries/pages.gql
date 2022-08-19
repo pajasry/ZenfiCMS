@@ -1,5 +1,5 @@
-query pages($skip: Int, $take: Int){
-    pages(skip: $skip, take: $take){
+query pages($except: String, $hasSubpages: Boolean, $isHomepage: Boolean, $parentId: String, $skip: Int, $take: Int){
+    pages(except: $except, hasSubpages: $hasSubpages, isHomepage: $isHomepage, parentId: $parentId, skip: $skip, take: $take){
         count
         items{
             author{
@@ -9,15 +9,144 @@ query pages($skip: Int, $take: Int){
                 updatedAt
                 username
             }
+            authorId
             createdAt
             description
             id
+            isHomepage
             name
+            parent{
+                author{
+                    createdAt
+                    email
+                    id
+                    updatedAt
+                    username
+                }
+                authorId
+                createdAt
+                description
+                id
+                isHomepage
+                name
+                parent{
+                    authorId
+                    createdAt
+                    description
+                    id
+                    isHomepage
+                    name
+                    parentId
+                    path
+                    status{
+                        id
+                        name
+                        variant
+                    }
+                    statusId
+                    subpages{
+                        author{
+                            createdAt
+                            email
+                            id
+                            updatedAt
+                            username
+                        }
+                        authorId
+                        createdAt
+                        description
+                        id
+                        isHomepage
+                        name
+                        parent{
+                            authorId
+                            createdAt
+                            description
+                            id
+                            isHomepage
+                            name
+                            parentId
+                            path
+                            statusId
+                            thumbnail{
+                                id
+                                key
+                                mimetype
+                                name
+                                path
+                            }
+                            thumbnailId
+                            updatedAt
+                        }
+                        parentId
+                        path
+                        status{
+                            id
+                            name
+                            variant
+                        }
+                        statusId
+                        subpages{
+                            authorId
+                            createdAt
+                            description
+                            id
+                            isHomepage
+                            name
+                            parentId
+                            path
+                            statusId
+                            thumbnail{
+                                id
+                                key
+                                mimetype
+                                name
+                                path
+                            }
+                            thumbnailId
+                            updatedAt
+                        }
+                        thumbnailId
+                        updatedAt
+                    }
+                    thumbnailId
+                    updatedAt
+                }
+                parentId
+                path
+                statusId
+                thumbnailId
+                updatedAt
+            }
+            parentId
+            path
             status{
                 id
                 name
                 variant
             }
+            statusId
+            subpages{
+                authorId
+                createdAt
+                description
+                id
+                isHomepage
+                name
+                parentId
+                path
+                statusId
+                thumbnailId
+                updatedAt
+            }
+            thumbnail{
+                id
+                key
+                mimetype
+                name
+                path
+            }
+            thumbnailId
             updatedAt
         }
     }
