@@ -1,21 +1,15 @@
-import { forwardRef, Module } from "@nestjs/common";
-import { PassportModule } from "@nestjs/passport";
-import { JwtModule } from "@nestjs/jwt";
-import { JwtStrategy } from "@/auth/strategies/jwt.strategy";
-import { UsersModule } from "@/users/users.module";
-import { AuthService } from "@/auth/services/auth.service";
-import { AuthResolver } from "@/auth/resolvers/auth.resolver";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { JwtTokensRepository } from "@/auth/repositories/jwtTokens.repository";
-import { UsersRepository } from "@/users/repositories/users.repository";
-import { EmailsModule } from "@/emails/emails.module";
-import { PasswordTokensRepository } from "@/auth/repositories/passwordTokens.repository";
+import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { JwtModule } from "@nestjs/jwt";
+import { PassportModule } from "@nestjs/passport";
+
+import { AuthResolver } from "@/auth/resolvers/auth.resolver";
+import { AuthService } from "@/auth/services/auth.service";
+import { JwtStrategy } from "@/auth/strategies/jwt.strategy";
+import { EmailModule } from "@/email/email.module";
 
 @Module({
     imports: [
-        forwardRef(() => UsersModule),
-        TypeOrmModule.forFeature([UsersRepository, JwtTokensRepository, PasswordTokensRepository]),
         PassportModule.register({
             defaultStrategy: "jwt",
         }),
@@ -26,7 +20,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
             }),
             inject: [ConfigService],
         }),
-        EmailsModule,
+        EmailModule,
     ],
     providers: [AuthService, AuthResolver, JwtStrategy],
     exports: [AuthService, AuthResolver],

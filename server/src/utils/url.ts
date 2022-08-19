@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-export const createPath = (value: string) => {
+export const formatPath = (value: string) => {
     const normalized = value.normalize("NFD");
 
     const withoutDiacritics = _.replace(normalized, /[\u0300-\u036f]/g, "");

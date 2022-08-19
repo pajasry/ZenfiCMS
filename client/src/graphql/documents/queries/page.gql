@@ -1,5 +1,5 @@
-query page($id: String, $path: String){
-    page(id: $id, path: $path){
+query page($id: String!){
+    page(id: $id){
         item{
             author{
                 createdAt
@@ -8,16 +8,144 @@ query page($id: String, $path: String){
                 updatedAt
                 username
             }
+            authorId
             createdAt
             description
             id
+            isHomepage
             name
+            parent{
+                author{
+                    createdAt
+                    email
+                    id
+                    updatedAt
+                    username
+                }
+                authorId
+                createdAt
+                description
+                id
+                isHomepage
+                name
+                parent{
+                    authorId
+                    createdAt
+                    description
+                    id
+                    isHomepage
+                    name
+                    parentId
+                    path
+                    status{
+                        id
+                        name
+                        variant
+                    }
+                    statusId
+                    subpages{
+                        author{
+                            createdAt
+                            email
+                            id
+                            updatedAt
+                            username
+                        }
+                        authorId
+                        createdAt
+                        description
+                        id
+                        isHomepage
+                        name
+                        parent{
+                            authorId
+                            createdAt
+                            description
+                            id
+                            isHomepage
+                            name
+                            parentId
+                            path
+                            statusId
+                            thumbnail{
+                                id
+                                key
+                                mimetype
+                                name
+                                path
+                            }
+                            thumbnailId
+                            updatedAt
+                        }
+                        parentId
+                        path
+                        status{
+                            id
+                            name
+                            variant
+                        }
+                        statusId
+                        subpages{
+                            authorId
+                            createdAt
+                            description
+                            id
+                            isHomepage
+                            name
+                            parentId
+                            path
+                            statusId
+                            thumbnail{
+                                id
+                                key
+                                mimetype
+                                name
+                                path
+                            }
+                            thumbnailId
+                            updatedAt
+                        }
+                        thumbnailId
+                        updatedAt
+                    }
+                    thumbnailId
+                    updatedAt
+                }
+                parentId
+                path
+                statusId
+                thumbnailId
+                updatedAt
+            }
+            parentId
             path
             status{
                 id
                 name
                 variant
             }
+            statusId
+            subpages{
+                authorId
+                createdAt
+                description
+                id
+                isHomepage
+                name
+                parentId
+                path
+                statusId
+                thumbnailId
+                updatedAt
+            }
+            thumbnail{
+                id
+                key
+                mimetype
+                name
+                path
+            }
+            thumbnailId
             updatedAt
         }
     }

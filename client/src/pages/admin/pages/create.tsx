@@ -2,8 +2,11 @@ import { FormikProps } from "formik";
 import { useRef } from "react";
 
 import { ButtonProps } from "@/components/core";
-import { PageHeader, Template } from "@/components/layout";
-import { CreatePageForm } from "@/containers/forms";
+import { CreatePageForm } from "@/components/form/containers";
+import {
+    AdminTemplate,
+    AdminTemplateHeader,
+} from "@/components/layout/templates";
 import { CreatePageInput } from "@/graphql/schema";
 
 /**
@@ -21,22 +24,20 @@ const CreatePage = () => {
             outline: true,
             icon: "edit",
             value: "Editor",
-            title: "Editor",
             onClick: () => null,
         },
         {
             icon: "download",
             value: "Uložit",
-            title: "Uložit",
             onClick: submitForm,
         },
     ];
 
     return (
-        <Template title="Vytvoření stránky">
-            <PageHeader title="Vytvoření stránky" actions={actions} />
+        <AdminTemplate title="Vytvoření stránky" forceHideWebPreview>
+            <AdminTemplateHeader title="Vytvoření stránky" actions={actions} />
             <CreatePageForm formRef={formRef} />
-        </Template>
+        </AdminTemplate>
     );
 };
 

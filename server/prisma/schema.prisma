@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model JwtToken {
+  id        String  @id @default(uuid())
+  value     String
+  isRevoked Boolean @default(false)
+  user      User[]
+
+  @@map("jwtTokens")
+}
+
+model PasswordToken {
+  id        String   @id @default(uuid())
+  value     String
+  isRevoked Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User[]
+
+  @@map("passwordTokens")
+}
+
+model User {
+  id              String         @id @default(uuid())
+  username        String
+  email           String         @unique
+  password        String
+  jwtToken        JwtToken?      @relation(fields: [jwtTokenId], references: [id])
+  jwtTokenId      String?
+  passwordToken   PasswordToken? @relation(fields: [passwordTokenId], references: [id])
+  passwordTokenId String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  pages           Page[]
+
+  @@map("users")
+}
+
+model PageStatus {
+  id      String @id @default(uuid())
+  name    String @unique
+  variant String
+  pages   Page[]
+
+  @@map("pageStatuses")
+}
+
+model Attach {
+  id       String @id @default(uuid())
+  name     String @unique
+  path     String
+  mimetype String
+  key      String
+  page     Page[]
+
+  @@map("attaches")
+}
+
+model Page {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  path        String     @unique
+  description String
+  isHomepage  Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  status      PageStatus @relation(fields: [statusId], references: [id])
+  statusId    String
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String
+  subpages    Page[]     @relation("parent")
+  parent      Page?      @relation("parent", fields: [parentId], references: [id])
+  parentId    String?
+  thumbnail   Attach?    @relation(fields: [thumbnailId], references: [id])
+  thumbnailId String?
+
+  @@map("pages")
+}

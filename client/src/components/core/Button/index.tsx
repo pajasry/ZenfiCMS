@@ -30,10 +30,11 @@ export const Button = ({
 
 export interface ButtonProps {
     value?: string;
-    title: string;
     icon?: IconName;
     outline?: boolean;
     isLoading?: boolean;
+    isHidden?: boolean;
+    disabled?: boolean;
     type?: "submit" | "button";
     variant?: VariantType;
     onClick?: () => void;

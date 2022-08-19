@@ -7,4 +7,5 @@ module.exports.createUser = fs.readFileSync(path.join(__dirname, 'createUser.gql
 module.exports.deletePage = fs.readFileSync(path.join(__dirname, 'deletePage.gql'), 'utf8');
 module.exports.login = fs.readFileSync(path.join(__dirname, 'login.gql'), 'utf8');
 module.exports.resetPassword = fs.readFileSync(path.join(__dirname, 'resetPassword.gql'), 'utf8');
+module.exports.setHomepage = fs.readFileSync(path.join(__dirname, 'setHomepage.gql'), 'utf8');
 module.exports.updatePage = fs.readFileSync(path.join(__dirname, 'updatePage.gql'), 'utf8');

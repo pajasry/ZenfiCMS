@@ -1,7 +1,7 @@
 import React from "react";
 
-import { AuthTemplate } from "@/components/layout";
-import { CreatePasswordForm } from "@/containers/forms";
+import { CreatePasswordForm } from "@/components/form/containers";
+import { AuthTemplate } from "@/components/layout/templates";
 
 /**
  * Reset password page

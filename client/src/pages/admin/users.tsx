@@ -1,6 +1,9 @@
 import { ButtonProps } from "@/components/core";
-import { PageHeader, Template } from "@/components/layout";
-import { UsersTable } from "@/containers/tables";
+import {
+    AdminTemplate,
+    AdminTemplateHeader,
+} from "@/components/layout/templates";
+import { UsersTable } from "@/components/table/containers";
 
 /**
  * Users page
@@ -10,16 +13,15 @@ const Users = () => {
         {
             icon: "add",
             value: "Přidat uživatele",
-            title: "Přidat uživatele",
             onClick: () => null,
         },
     ];
 
     return (
-        <Template title="Uživatelé">
-            <PageHeader title="Uživatelé" actions={actions} />
+        <AdminTemplate title="Uživatelé">
+            <AdminTemplateHeader title="Uživatelé" actions={actions} />
             <UsersTable />
-        </Template>
+        </AdminTemplate>
     );
 };
 

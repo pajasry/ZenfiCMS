@@ -2,10 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AttachEntity {
+  id: String!
+  key: String!
+  mimetype: String!
+  name: String!
+  path: String!
+}
+
+type ClientPageOutput {
+  item: PickObjectType
+}
+
 input CreatePageInput {
   description: String!
   name: String!
+  path: String
   statusId: String
+  subpagesIds: [String!]
 }
 
 input CreatePasswordInput {
@@ -31,7 +45,7 @@ input LoginInput {
 
 type LoginOutput {
   token: String!
-  user: UsersEntity!
+  user: UserEntity!
 }
 
 type Mutation {
@@ -41,73 +55,62 @@ type Mutation {
   deletePage(id: String!): Boolean!
   login(loginInput: LoginInput!): LoginOutput!
   resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!
+  setHomepage(id: String!): Boolean!
   updatePage(id: String!, updatePageInput: UpdatePageInput!): PageOutput!
 }
 
-type PageOutput {
-  item: PagesEntity
-}
-
-type PagesEntity {
-  author: UsersEntity!
+type PageEntity {
+  author: UserEntity!
+  authorId: String!
   createdAt: DateTime!
   description: String!
   id: String!
+  isHomepage: Boolean!
   name: String!
+  parent: PageEntity
+  parentId: String
   path: String!
-  status: PublicationStatusesEntity!
+  status: PageStatusEntity!
+  statusId: String!
+  subpages: [PageEntity!]
+  thumbnail: AttachEntity
+  thumbnailId: String
   updatedAt: DateTime!
 }
 
-type PagesOutput {
-  count: Float!
-  items: [PagesEntity!]!
+type PageOutput {
+  item: PageEntity
 }
 
-type PostOutput {
-  item: PostsEntity
-}
-
-type PostsEntity {
-  author: UsersEntity!
-  createdAt: DateTime!
-  description: String!
-  id: String!
-  name: String!
-  status: PublicationStatusesEntity!
-  updatedAt: DateTime!
-}
-
-type PostsOutput {
-  count: Float!
-  items: [PostsEntity!]!
-}
-
-type PublicationStatusOutput {
-  item: PublicationStatusesEntity
-}
-
-type PublicationStatusesEntity {
+type PageStatusEntity {
   id: String!
   name: String!
   variant: String!
 }
 
-type PublicationStatusesOutput {
+type PageStatusesOutput {
   count: Float!
-  items: [PublicationStatusesEntity!]!
+  items: [PageStatusEntity!]!
+}
+
+type PagesOutput {
+  count: Float!
+  items: [PageEntity!]!
+}
+
+type PickObjectType {
+  description: String!
+  name: String!
+  path: String!
+  status: PageStatusEntity!
 }
 
 type Query {
-  createPage(createPageInput: CreatePageInput!): PageOutput!
+  clientPage(path: String!): ClientPageOutput!
   me: UserOutput!
-  page(id: String, path: String): PageOutput!
-  pages(skip: Int = 0, take: Int = 25): PagesOutput!
-  post(id: String!): PostOutput!
-  posts(skip: Int = 0, take: Int = 25): PostsOutput!
-  publicationStatus(id: String!): PublicationStatusOutput!
-  publicationStatuses: PublicationStatusesOutput!
-  settings: SettingsOutput!
+  page(id: String!): PageOutput!
+  pageStatuses: PageStatusesOutput!
+  pages(except: String, hasSubpages: Boolean, isHomepage: Boolean, parentId: String, skip: Int = 0, take: Int = 25): PagesOutput!
   user(id: String!): UserOutput!
   users: UsersOutput!
 }
@@ -116,26 +119,15 @@ input ResetPasswordInput {
   email: String!
 }
 
-type SettingsEntity {
-  googleAnalyticsId: String
-  id: String!
-}
-
-type SettingsOutput {
-  item: SettingsEntity
-}
-
 input UpdatePageInput {
   description: String
   name: String
+  path: String
   statusId: String
+  subpagesIds: [String!]
 }
 
-type UserOutput {
-  item: UsersEntity
-}
-
-type UsersEntity {
+type UserEntity {
   createdAt: DateTime!
   email: String!
   id: String!
@@ -143,7 +135,11 @@ type UsersEntity {
   username: String!
 }
 
+type UserOutput {
+  item: UserEntity
+}
+
 type UsersOutput {
   count: Float!
-  items: [UsersEntity!]!
+  items: [UserEntity!]!
 }

@@ -33,13 +33,9 @@ export const Global = createGlobalStyle`
   
   a {
     font-weight: 500;
-    text-decoration: none;
     color: ${({ theme }) => theme.color.dark};
     cursor: pointer;
-    
-    &:hover {
-      text-decoration: underline;
-    }
+    text-decoration: underline;
   }
 `;
 

@@ -1,8 +1,11 @@
 import { useRouter } from "next/router";
 
 import { ButtonProps } from "@/components/core";
-import { PageHeader, Template } from "@/components/layout";
-import { PagesTable } from "@/containers/tables";
+import {
+    AdminTemplate,
+    AdminTemplateHeader,
+} from "@/components/layout/templates";
+import { PagesTable } from "@/components/table/containers";
 import { RoutesName } from "@/types";
 
 /**
@@ -19,16 +22,15 @@ const Pages = () => {
         {
             icon: "add",
             value: "Přidat stránku",
-            title: "Přidat stránku",
             onClick: gotoCreatePage,
         },
     ];
 
     return (
-        <Template title="Stránky">
-            <PageHeader title="Stránky" actions={actions} />
+        <AdminTemplate title="Stránky">
+            <AdminTemplateHeader title="Stránky" actions={actions} />
             <PagesTable />
-        </Template>
+        </AdminTemplate>
     );
 };
 

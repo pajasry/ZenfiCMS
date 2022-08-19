@@ -9,7 +9,7 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 
 import { Spinner } from "@/components/core";
 import * as Styled from "@/globalStyles";
-import { MeQuery, MeQueryVariables, UsersEntity } from "@/graphql/schema";
+import { MeQuery, MeQueryVariables, UserEntity } from "@/graphql/schema";
 import {
     selectSignedUser,
     signInAction,
@@ -35,7 +35,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     const { loading } = useQuery<MeQuery, MeQueryVariables>(ME, {
         onCompleted: (data) => {
             const user = _.omit(data.me, "__typename");
-            dispatch(signInAction(user.item as UsersEntity));
+            dispatch(signInAction(user.item as UserEntity));
         },
         skip: isFront,
     });
@@ -49,6 +49,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
         const redirectFromAdmin =
             !_.includes(authRoutes, router.pathname) && !signedUser;
+
         const redirectFromLogin =
             _.includes(authRoutes, router.pathname) && signedUser;
 
@@ -64,7 +65,18 @@ const App = ({ Component, pageProps }: AppProps) => {
         handleRedirects().finally(() => setLoaded(true));
     }, [signedUser, loading, router, handleRedirects, isFront]);
 
-    if (!loaded && !isFront) {
+    if (isFront) {
+        return (
+            <Styled.Wrapper>
+                <Head>
+                    <title>&#65279;</title>
+                </Head>
+                <Component {...pageProps} />
+            </Styled.Wrapper>
+        );
+    }
+
+    if (!loaded) {
         return (
             <Fragment>
                 <Head>

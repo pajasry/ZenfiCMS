@@ -6,13 +6,17 @@ import * as Styled from "./styled";
  * Text component
  */
 // eslint-disable-next-line react/display-name
-export const Text = forwardRef((props: TextProps, ref: ForwardedRef<HTMLParagraphElement>) => {
-    return (
-        <Styled.Wrapper {...props} ref={ref}>
-            {props.value}
-        </Styled.Wrapper>
-    );
-});
+export const Text = forwardRef(
+    (props: TextProps, ref: ForwardedRef<HTMLParagraphElement>) => {
+        return (
+            <Styled.Wrapper
+                {...props}
+                ref={ref}
+                dangerouslySetInnerHTML={{ __html: props.value || "" }}
+            />
+        );
+    }
+);
 
 export interface TextProps {
     value: string | undefined;

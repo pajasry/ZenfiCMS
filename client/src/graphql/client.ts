@@ -1,25 +1,14 @@
-import {
-    ApolloClient,
-    ApolloLink,
-    createHttpLink,
-    InMemoryCache,
-} from "@apollo/client";
+import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import apolloLogger from "apollo-link-logger";
 import { getAuthToken } from "@/utils";
-import { onError } from "@apollo/client/link/error";
-import { toast } from "react-toastify";
-import * as _ from "lodash";
+import { createUploadLink } from "apollo-upload-client";
 
-const httpLink = createHttpLink({
+const uploadLink = createUploadLink({
     uri: `${process.env.NEXT_PUBLIC_SERVER}/graphql`,
 });
 
-const errorLink = onError((error) => {
-    _.forEach(error.response?.errors, (err) => toast.error(err.message));
-});
-
-const loggerLink = ApolloLink.from([apolloLogger, errorLink, httpLink]);
+const loggerLink = ApolloLink.from([apolloLogger, uploadLink]);
 
 const authLink = setContext((_, { headers }) => {
     if (typeof window === "undefined") return {};

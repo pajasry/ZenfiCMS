@@ -1,11 +1,10 @@
 export enum RoutesName {
+    NOT_FOUND = "/404",
     FRONT = "/",
     RESET_PASSWORD = "/admin/reset-password",
     CREATE_PASSWORD = "/admin/create-password",
     LOGIN = "/admin/login",
     HOME = "/admin",
-    MEDIA = "/admin/media",
-    POSTS = "/admin/posts",
     PAGES = "/admin/pages",
     PAGE = "/admin/pages/:pageId",
     CREATE_PAGE = "/admin/pages/create",

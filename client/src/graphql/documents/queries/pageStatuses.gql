@@ -1,0 +1,10 @@
+query pageStatuses{
+    pageStatuses{
+        count
+        items{
+            id
+            name
+            variant
+        }
+    }
+}
